@@ -1,3 +1,4 @@
 module.exports = {
-  reactStrictMode: true,
-}
+    mode: "jit",
+    reactStrictMode: true,
+};

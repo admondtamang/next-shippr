@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-center {
+    @apply flex justify-around items-center;
+}
+.circular-button {
+    @apply rounded-full border-2 w-9 h-9 border-gray-300;
+}
