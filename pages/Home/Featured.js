@@ -26,8 +26,8 @@ export default function Featured() {
         <>
             <section className="featured">
                 <div className="container">
-                    {featured.map(({ title, image, type, link, linkTitle }) => (
-                        <article style={{ backgroundImage: `url(${image})` }} className={`featured-item ${type}`}>
+                    {featured.map(({ title, image, type, link, linkTitle }, index) => (
+                        <article style={{ backgroundImage: `url(${image})` }} key={index} className={`featured-item ${type}`}>
                             <div className="featured-item__content">
                                 <h3>{title}</h3>
                                 <a href={link} className="btn btn--rounded">

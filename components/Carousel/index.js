@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Lazy, Pagination, Navigation } from "swiper";
+import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
@@ -9,7 +11,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Lazy, Pagination, Navigation } from "swiper";
 
 export default function App() {
     const images = [
@@ -27,27 +28,32 @@ export default function App() {
         },
     ];
     return (
-        <>
+        <div className="container">
             <Swiper
-                style={{
-                    "--swiper-navigation-color": "#fff",
-                    "--swiper-pagination-color": "#fff",
-                }}
                 lazy={true}
+                spaceBetween={30}
                 pagination={{
                     clickable: true,
                 }}
-                navigation={true}
                 modules={[Lazy, Pagination, Navigation]}
                 className="swiper-slide"
             >
-                {images.map((image) => (
-                    <SwiperSlide>
-                        <img data-src={image} height={200} className="swiper-lazy carousel-image" />
-                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                {images.map(({ image }, index) => (
+                    <SwiperSlide key={index}>
+                        <Image
+                            layout="responsive"
+                            src={image || ""}
+                            alt=""
+                            width={500}
+                            height={150}
+                            placeholder="blur"
+                            blurDataURL="https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js-bg.png"
+                            className="swiper-lazy rounded"
+                        />
+                        {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div> */}
                     </SwiperSlide>
                 ))}
             </Swiper>
-        </>
+        </div>
     );
 }
