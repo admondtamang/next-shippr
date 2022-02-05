@@ -12,6 +12,12 @@ const cartSlice = createSlice({
                 cartItems: addItemTocart(state.cartItems, action.payload),
             };
         },
+        UPDATE_CART: (state, action) => {
+            return {
+                ...state,
+                cartItems: [...state.cartItems, action.payload],
+            };
+        },
         REMOVE_FROM_CART: (state, action) => {
             return {
                 ...state,
@@ -30,14 +36,14 @@ const cartSlice = createSlice({
                 cartItems: decreaseCartItem(state.cartItems, action.payload),
             };
         },
-        EMPTY_CART:(state,action)=>{
+        EMPTY_CART: (state, action) => {
             return {
                 ...state,
-                cartItems: []
-            }
-        }
+                cartItems: [],
+            };
+        },
     },
 });
 
-export const { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_CART, DECREASE_CART ,EMPTY_CART} = cartSlice.actions;
+export const { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_CART, DECREASE_CART, EMPTY_CART } = cartSlice.actions;
 export default cartSlice.reducer;

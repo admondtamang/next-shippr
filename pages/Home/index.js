@@ -7,7 +7,10 @@ export default function Home() {
     return (
         <>
             <Carousel />
+            <ProductCarousel />
             <Featured />
+            <ProductCarousel />
+            <Carousel height={100} />
             <WhyUs />
             <ProductCarousel />
             {/* <ProductItem /> */}

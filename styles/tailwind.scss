@@ -5,6 +5,9 @@
 .flex-center {
     @apply flex justify-around items-center;
 }
+.flex-center-between {
+    @apply flex justify-between items-center;
+}
 .circular-button {
     @apply rounded-full border-2 w-9 h-9 border-gray-300;
 }

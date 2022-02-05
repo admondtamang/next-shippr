@@ -4,7 +4,6 @@ import React from "react";
 import Products from "../../json/json-products";
 
 export default function ProductItem({ item }) {
-    console.log(item);
     var discount = 2;
     const { id, name, price, regular_price = 322, images, on_sale, slug } = item;
 
@@ -22,13 +21,13 @@ export default function ProductItem({ item }) {
     }
 
     return (
-        <div className="product-item w-56 rounded p-1">
+        <div className="product-item w-56 rounded p-1 ">
             <Image
                 layout="responsive"
                 src={image}
-                alt=""
-                width={200}
-                height={150}
+                alt={slug}
+                width={230}
+                height={200}
                 placeholder="blur"
                 blurDataURL="https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js-bg.png"
                 className="swiper-lazy rounded w-full"
