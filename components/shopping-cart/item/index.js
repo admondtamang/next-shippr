@@ -1,18 +1,13 @@
 import { useDispatch } from "react-redux";
-// import { removeProduct } from './../../../store/actions/cartActions';
+import { REMOVE_FROM_CART, ADD_TO_CART, DECREASE_CART, INCREASE_CART } from "../../../redux/cart/cartSlice";
 // import { setCount } from './../../../store/actions/cartActions';
 
-const ShoppingCart = ({ thumb, name, id, color, size, count, price }) => {
+const ShoppingCart = (props) => {
+    const { thumb, name, id, color, size, count, price } = props;
     const dispatch = useDispatch();
 
     const removeFromCart = () => {
-        // dispatch(removeProduct(
-        //   {
-        //     id: id,
-        //     color: color,
-        //     size: size
-        //   }
-        // ))
+        dispatch(REMOVE_FROM_CART(props));
     };
 
     const setProductCount = (count) => {
@@ -20,14 +15,7 @@ const ShoppingCart = ({ thumb, name, id, color, size, count, price }) => {
             return false;
         }
 
-        // dispatch(setCount(
-        //   {
-        //     id: id,
-        //     color: color,
-        //     size: size,
-        //     count: count,
-        //   }
-        // ))
+        dispatch(ADD_TO_CART({ id, variation_id: 0, count, thumb, price, name }));
     };
 
     return (
@@ -52,11 +40,11 @@ const ShoppingCart = ({ thumb, name, id, color, size, count, price }) => {
             </td>
             <td>
                 <div className="quantity-button">
-                    <button type="button" onClick={() => setProductCount(count - 1)} className="quantity-button__btn">
+                    <button type="button" onClick={() => dispatch(INCREASE_CART({ id }))} className="quantity-button__btn">
                         -
                     </button>
                     <span>{count}</span>
-                    <button type="button" onClick={() => setProductCount(count + 1)} className="quantity-button__btn">
+                    <button type="button" onClick={() => dispatch(DECREASE_CART({ id }))} className="quantity-button__btn">
                         +
                     </button>
                 </div>

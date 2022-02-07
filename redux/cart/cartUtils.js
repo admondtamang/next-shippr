@@ -66,8 +66,9 @@ export const decreaseCartItem = (cartItems, cartItemToDecrease) => {
 };
 
 export const removeItemfromCart = (cartItems, cartItemsToRemove) => {
+    console.log(cartItemsToRemove);
     // remove for varitation product
-    if (cartItemsToRemove.variation_id !== 0) {
+    if (cartItemsToRemove?.variation_id !== 0) {
         return cartItems.filter((cartItem) => cartItem.variation_id !== cartItemsToRemove.variation_id);
     } else return cartItems.filter((cartItem) => cartItem.product_id !== cartItemsToRemove.product_id);
 

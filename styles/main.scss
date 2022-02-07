@@ -20,6 +20,9 @@
 @import "./module/product-single.scss";
 @import "./module/cart.scss";
 
+//components
+@import "./module/breadcrum.scss";
+
 .container {
     max-width: 380px;
     margin-left: auto;

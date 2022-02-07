@@ -1,111 +1,70 @@
-import { useState } from 'react';
-import productsColors from './../../../utils/data/products-colors';
-import productsSizes from './../../../utils/data/products-sizes';
-import CheckboxColor from './../../products-filter/form-builder/checkbox-color';
-import { useDispatch, useSelector } from 'react-redux';
-import { some } from 'lodash';
-import { addProduct } from './../../../store/actions/cartActions';
-import { toggleFavProduct } from './../../../store/actions/userActions';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { some } from "lodash";
+import { ADD_TO_CART } from "../../../redux/cart/cartSlice";
 
 const Content = ({ product }) => {
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(1);
-  const [color, setColor] = useState('');
-  const [itemSize, setItemSize] = useState('');
+    const dispatch = useDispatch();
+    const [quantity, setQuantity] = useState(1);
+    let discount;
 
-  const onColorSet = (e) => setColor(e);
-  const onSelectChange = (e) => setItemSize(e.target.value);
+    const { id, price, variations, name, on_sale, description, regular_price, images } = product;
+    const pictures = images?.map((img) => {
+        return { uri: img.src };
+    });
 
-  const { favProducts } = useSelector(state => state.user);
-  const isFavourite = some(favProducts, productId => productId === product.id);
+    if (regular_price) {
+        discount = ((regular_price - price) / regular_price) * 100;
+        discount = discount.toFixed(0);
+    }
 
-  const toggleFav = () => {
-    dispatch(toggleFavProduct(
-      { 
-        id: product.id,
-      }
-    ))
-  }
+    // image validation choosing 1st image
+    const image = images.length <= 0 ? "https://facebook.github.io/react/img/logo_small.png" : images[0].src;
 
-  const addToCart = () => {
-    dispatch(addProduct(
-      { 
-        id: product.id,
-        name: product.name,
-        thumb: product.images[0],
-        price: product.currentPrice,
-        count: count,
-        color: color,
-        size: itemSize
-      }
-    ))
-  }
+    const addToCart = () => {
+        dispatch(ADD_TO_CART({ id: id, variation_id: 0, count: quantity, thumb: image, price, name }));
+    };
 
-  return (
-    <section className="product-content">
-      <div className="product-content__intro">
-        <h5 className="product__id">Product ID:<br></br>{product.id}</h5>
-        <span className="product-on-sale">Sale</span>
-        <h2 className="product__name">{product.name}</h2>
+    function handleQuantity(value) {
+        if (value < 1) setQuantity(1);
+        else setQuantity(value);
+    }
 
-        <div className="product__prices">
-          <h4>${ product.currentPrice }</h4>
-          {product.discount &&
-            <span>${ product.price }</span>
-          }
-        </div>
-      </div>
-
-      <div className="product-content__filters">
-        <div className="product-filter-item">
-          <h5>Color:</h5>
-          <div className="checkbox-color-wrapper">
-            {productsColors.map(type => (
-              <CheckboxColor 
-                key={type.id} 
-                type={'radio'} 
-                name="product-color" 
-                color={type.color}
-                valueName={type.label}
-                onChange={onColorSet} 
-              />
-            ))}
-          </div>
-        </div>
-        <div className="product-filter-item">
-          <h5>Size: <strong>See size table</strong></h5>
-          <div className="checkbox-color-wrapper">
-            <div className="select-wrapper">
-              <select onChange={onSelectChange}>
-                <option>Choose size</option>
-                {productsSizes.map(type => (
-                  <option value={type.label}>{type.label}</option>
-                ))}
-              </select>
+    return (
+        <section className="container flex flex-col gap-6">
+            <div>
+                <div className="pill w-11">Sale</div>
+                <h1 className="text-3xl font-light h2 mb-3">T-Shirt Summer Vibes</h1>
+                <p className="text-3xl">
+                    Rs. 4000 <span className="text-2xl line-through ml-4 text-gray-400">Rs. 4000</span>
+                </p>
             </div>
-          </div>
-        </div>
-        <div className="product-filter-item">
-          <h5>Quantity:</h5>
-          <div className="quantity-buttons">
-            <div className="quantity-button">
-              <button type="button" onClick={() => setCount(count - 1)} className="quantity-button__btn">
-                -
-              </button>
-              <span>{count}</span>
-              <button type="button" onClick={() => setCount(count + 1)} className="quantity-button__btn">
-                +
-              </button>
+
+            {/* <div className="div">
+                <h5 className="text-sm mb-2 text-gray-400">Size:</h5>
+            </div> */}
+
+            <div className="product-filter-item ">
+                <h5 className="text-sm mb-2 text-gray-400">Quantity:</h5>
+                <div className="quantity-buttons">
+                    <div className="quantity-button">
+                        <button type="button" onClick={() => handleQuantity(quantity - 1)} className="quantity-button__btn">
+                            -
+                        </button>
+                        <span>{quantity}</span>
+                        <button type="button" onClick={() => handleQuantity(quantity + 1)} className="quantity-button__btn">
+                            +
+                        </button>
+                    </div>
+
+                    <button type="submit" onClick={() => addToCart()} className="btn btn--rounded btn--yellow">
+                        Add to cart
+                    </button>
+                    {/* <button type="button" onClick={toggleFav} className={`btn-heart ${isFavourite ? "btn-heart--active" : ""}`}> */}
+                </div>
             </div>
-            
-            <button type="submit" onClick={() => addToCart()} className="btn btn--rounded btn--yellow">Add to cart</button>
-            <button type="button" onClick={toggleFav} className={`btn-heart ${isFavourite ? 'btn-heart--active' : ''}`}><i className="icon-heart"></i></button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
-  
+
 export default Content;
-    
