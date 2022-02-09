@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Products from "../../json/json-products";
 import CustomLink from "../CustomLink";
+import ToolTipWithButton from "../ToolTipWithButton";
 
 export default function ProductItem({ item }) {
     var discount = 2;
@@ -23,7 +24,7 @@ export default function ProductItem({ item }) {
 
     return (
         <CustomLink href={`/product/${id}`}>
-            <div className="product-item w-56 rounded p-1 ">
+            <div className="product-item w-56 rounded p-1 hover:shadow-lg ">
                 <Image
                     layout="responsive"
                     src={image}
