@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Lazy, Pagination, Navigation } from "swiper";
+import { Lazy, Pagination, Navigation, Autoplay } from "swiper";
 import Image from "next/image";
 
 // Import Swiper styles
@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 
 // import required modules
 
-export default function App({ height, images }) {
+export default function Carousel({ height, images }) {
     images = [
         {
             image: "https://icms-image.slatic.net/images/ims-web/1c90e149-ecc7-4ed0-962b-6cf10b011514.jpg_1200x1200.jpg",
@@ -32,7 +32,12 @@ export default function App({ height, images }) {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Lazy, Pagination, Navigation]}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                centeredSlides={true}
+                modules={[Lazy, Autoplay, Pagination, Navigation]}
                 className="swiper-slide"
             >
                 {images.map(({ image }, index) => (

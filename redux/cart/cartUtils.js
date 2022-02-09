@@ -38,11 +38,11 @@ export const increaseCartItem = (cartItems, cartItemToIncrese) => {
     const existingCartItem = cartItems.find((cartItems) => cartItems.product_id === cartItemToIncrese.product_id);
     if (existingCartItem) {
         // decrease for varitation product
-        if (cartItemToIncrese.variation_id !== 0) {
-            return cartItems.map((item) =>
-                item.variation_id === cartItemToIncrese.variation_id ? { ...item, quantity: item.quantity + 1 } : item
-            );
-        }
+        // if (cartItemToIncrese.variation_id !== 0) {
+        //     return cartItems.map((item) =>
+        //         item.variation_id === cartItemToIncrese.variation_id ? { ...item, quantity: item.quantity + 1 } : item
+        //     );
+        // }
         // for no varation product
         return cartItems.map((item) => (item.product_id === existingCartItem.product_id ? { ...item, quantity: item.quantity + 1 } : item));
     }
@@ -55,18 +55,18 @@ export const decreaseCartItem = (cartItems, cartItemToDecrease) => {
             return cartItems;
         }
         // decrease for varitation product
-        if (cartItemToDecrease.variation_id) {
-            return cartItems.map((item) =>
-                item.variation_id === cartItemToDecrease.variation_id ? { ...item, quantity: item.quantity - 1 } : item
-            );
-        }
+        // if (cartItemToDecrease.variation_id) {
+        //     return cartItems.map((item) =>
+        //         item.variation_id === cartItemToDecrease.variation_id ? { ...item, quantity: item.quantity - 1 } : item
+        //     );
+        // }
         // for no varation product
         return cartItems.map((item) => (item.product_id === existingCartItem.product_id ? { ...item, quantity: item.quantity - 1 } : item));
     }
 };
 
 export const removeItemfromCart = (cartItems, cartItemsToRemove) => {
-    console.log(cartItemsToRemove);
+    console.log("==", cartItemsToRemove);
     // remove for varitation product
     if (cartItemsToRemove?.variation_id !== 0) {
         return cartItems.filter((cartItem) => cartItem.variation_id !== cartItemsToRemove.variation_id);

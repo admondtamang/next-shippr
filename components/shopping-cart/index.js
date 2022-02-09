@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
 import CheckoutStatus from "../../components/checkout-status";
+import CustomLink from "../CustomLink";
 import Item from "./item";
 
 const ShoppingCart = () => {
     const { cartItems } = useSelector((state) => state.cart);
 
     const priceTotal = useSelector((state) => {
-        const cartItems = state.cart.cartItems;
+        const cartItems = state.cart?.cartItems;
         let totalPrice = 0;
-        if (cartItems.length > 0) {
-            cartItems.map((item) => (totalPrice += item.price * item.count));
+        if (cartItems?.length > 0) {
+            cartItems.map((item) => (totalPrice += item.price * item.quantity));
         }
 
         return totalPrice;
@@ -42,10 +43,11 @@ const ShoppingCart = () => {
                                         id={item.id}
                                         thumb={item.thumb}
                                         name={item.name}
+                                        variation_id={item.variation_id}
                                         color={item.color}
                                         price={item.price}
                                         size={item.size}
-                                        count={item.count}
+                                        quantity={item.quantity}
                                     />
                                 ))}
                             </tbody>
@@ -56,14 +58,16 @@ const ShoppingCart = () => {
                 </div>
 
                 <div className="cart-actions">
-                    <a href="/products" className="cart__btn-back">
-                        <i className="icon-left"></i> Continue Shopping
-                    </a>
+                    <div className="cart__btn-back">
+                        <CustomLink href="/product/34">
+                            <i className="icon-left"></i> Continue Shopping
+                        </CustomLink>
+                    </div>
                     <input type="text" placeholder="Promo Code" className="cart__promo-code" />
 
                     <div className="cart-actions__items-wrapper">
                         <p className="cart-actions__total">
-                            Total cost <strong>${priceTotal.toFixed(2)}</strong>
+                            Total cost <strong>Rs {priceTotal.toFixed(2)}</strong>
                         </p>
                         <a href="/cart/checkout" className="btn btn--rounded btn--yellow">
                             Checkout

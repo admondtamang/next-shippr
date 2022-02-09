@@ -22,7 +22,7 @@ const Content = ({ product }) => {
     const image = images.length <= 0 ? "https://facebook.github.io/react/img/logo_small.png" : images[0].src;
 
     const addToCart = () => {
-        dispatch(ADD_TO_CART({ id: id, variation_id: 0, count: quantity, thumb: image, price, name }));
+        dispatch(ADD_TO_CART({ id: id, variation_id: 0, quantity: quantity, thumb: image, price, name }));
     };
 
     function handleQuantity(value) {
@@ -33,10 +33,10 @@ const Content = ({ product }) => {
     return (
         <section className="container flex flex-col gap-6">
             <div>
-                <div className="pill w-11">Sale</div>
-                <h1 className="text-3xl font-light h2 mb-3">T-Shirt Summer Vibes</h1>
+                {regular_price && <div className="pill w-11">Sale</div>}
+                <h1 className="text-3xl font-light h2 mb-3">{name}</h1>
                 <p className="text-3xl">
-                    Rs. 4000 <span className="text-2xl line-through ml-4 text-gray-400">Rs. 4000</span>
+                    Rs. {price} {regular_price && <span className="text-2xl line-through ml-4 text-gray-400">Rs. {regular_price}</span>}
                 </p>
             </div>
 

@@ -1,6 +1,7 @@
 import { combineReducers, applyMiddleware, createStore } from "@reduxjs/toolkit";
 import thunkMiddleware from "redux-thunk";
 import cartSlice from "./cart/cartSlice";
+import storage from "./storage";
 import { createWrapper } from "next-redux-wrapper";
 // import productSlice from "./product/productSlice";
 // import userSlice from "./user/userSlice";
@@ -28,7 +29,7 @@ const makeStore = ({ isServer }) => {
     } else {
         //If it's on client side, create a store which will persist
         const { persistStore, persistReducer } = require("redux-persist");
-        const storage = require("redux-persist/lib/storage").default;
+        // const storage = require("redux-persist/lib/storage").default;
 
         const persistConfig = {
             key: "shoppingcart",

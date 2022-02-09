@@ -1,21 +1,23 @@
 import { useDispatch } from "react-redux";
 import { REMOVE_FROM_CART, ADD_TO_CART, DECREASE_CART, INCREASE_CART } from "../../../redux/cart/cartSlice";
+import CustomImage from "../../CustomImage";
 // import { setCount } from './../../../store/actions/cartActions';
 
 const ShoppingCart = (props) => {
-    const { thumb, name, id, color, size, count, price } = props;
+    const { thumb, name, id, color, variation_id, size, quantity, price } = props;
     const dispatch = useDispatch();
 
     const removeFromCart = () => {
         dispatch(REMOVE_FROM_CART(props));
     };
 
-    const setProductCount = (count) => {
-        if (count <= 0) {
+    const setProductCount = (quantity) => {
+        if (quantity <= 0) {
+            console.log("quantity less");
             return false;
         }
 
-        dispatch(ADD_TO_CART({ id, variation_id: 0, count, thumb, price, name }));
+        dispatch(ADD_TO_CART({ id, variation_id: 0, quantity, thumb, price, name }));
     };
 
     return (
@@ -23,7 +25,7 @@ const ShoppingCart = (props) => {
             <td>
                 <div className="cart-product">
                     <div className="cart-product__img">
-                        <img src={thumb} alt="" />
+                        <CustomImage width="500" height="500" src={thumb} alt={name} />
                     </div>
 
                     <div className="cart-product__content">
@@ -40,16 +42,16 @@ const ShoppingCart = (props) => {
             </td>
             <td>
                 <div className="quantity-button">
-                    <button type="button" onClick={() => dispatch(INCREASE_CART({ id }))} className="quantity-button__btn">
+                    <button type="button" onClick={() => dispatch(DECREASE_CART(props))} className="quantity-button__btn">
                         -
                     </button>
-                    <span>{count}</span>
-                    <button type="button" onClick={() => dispatch(DECREASE_CART({ id }))} className="quantity-button__btn">
+                    <span>{quantity}</span>
+                    <button type="button" onClick={() => dispatch(INCREASE_CART(props))} className="quantity-button__btn">
                         +
                     </button>
                 </div>
             </td>
-            <td>${price}</td>
+            <td>Rs {price}</td>
             <td className="cart-item-cancel">
                 <i className="icon-cancel" onClick={() => removeFromCart()}></i>
             </td>
