@@ -30,6 +30,7 @@
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.5",
     "sass": "^1.49.7",
+    "simple-react-lightbox": "^3.6.9-0",
     "swiper": "^8.0.0"
   },
   "devDependencies": {
