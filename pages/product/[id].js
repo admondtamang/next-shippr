@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import Breadcrumb from "../../components/breadcrumb";
+import Breadcrumb from "../../components/Breadcrumb";
 import Gallery from "../../components/product-single/gallery";
 import Description from "../../components/product-single/description";
 import Reviews from "../../components/product-single/reviews";
