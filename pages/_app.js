@@ -4,12 +4,18 @@ import { wrapper } from "../redux/configureStore";
 
 import SimpleReactLightbox from "simple-react-lightbox";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { ScreenContext } from "../contexts/ScreenContext";
+
 function MyApp({ Component, pageProps }) {
-  return (
-    <SimpleReactLightbox>
-      <Component {...pageProps} />
-    </SimpleReactLightbox>
-  );
+    const mobileScreen = useMediaQuery("(max-width:600px)");
+    return (
+        <ScreenContext.Provider value={{ mobileScreen }}>
+            <SimpleReactLightbox>
+                <Component {...pageProps} />
+            </SimpleReactLightbox>
+        </ScreenContext.Provider>
+    );
 }
 
 export default wrapper.withRedux(MyApp);
