@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Layout from "../../components/Layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import Gallery from "../../components/product-single/gallery";
@@ -27,14 +27,15 @@ const Product = ({ product }) => {
     const [showBlock, setShowBlock] = useState("description");
     const { mobileScreen } = useContext(ScreenContext);
 
-    product = products[5];
+    product = products[0];
 
     return (
         <Layout>
             <Breadcrumb currentPage={product.name} />
-
             <div
-                className={`flex container gap-8 ${mobileScreen && "flex-col"}`}
+                className={`flex h-2/6 container mb-8 gap-8 ${
+                    mobileScreen && "flex-col"
+                }`}
             >
                 <Gallery images={product.images} />
                 <Content product={product} />

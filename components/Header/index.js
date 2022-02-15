@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { CustomIconButton } from "..";
 import CustomLink from "../CustomLink";
@@ -15,7 +15,7 @@ export default function Header() {
 
     return (
         <div className="w-full bg-white">
-            <header className="flex-center gap-4 py-6 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full sm:px-6 bg-white z-auto">
+            <header className="container flex-center gap-4 py-6 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full sm:px-6 bg-white z-auto">
                 {/* category */}
                 <div className="flex-center">
                     <CustomLink href="/">
