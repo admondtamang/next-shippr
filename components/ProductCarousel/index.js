@@ -15,20 +15,20 @@ import ProductItem from "../ProductItem";
 
 export default function ProductCarousel() {
     return (
-        <div className="container">
+        <div className="productCarousel container">
             <div className="flex-center-between">
                 <h1 className="font-bold text-2xl mb-8">Featured Product</h1>
-                <h3 className="bg-gray-600 p-1 px-2 rounded font-bold text-white">More</h3>
+                <h3 className="bg-gray-600 p-1 px-2 rounded font-bold text-white">
+                    More
+                </h3>
             </div>
             <Swiper
                 slidesPerView={6}
                 spaceBetween={200}
                 freeMode={true}
-                // pagination={{
-                //     clickable: true,
-                // }}
-                modules={[FreeMode]}
-                className="mySwiper"
+                pagination={{
+                    clickable: true,
+                }}
             >
                 {jsonProducts.map((item) => (
                     <SwiperSlide key={item.id}>

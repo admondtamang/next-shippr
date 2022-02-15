@@ -4,17 +4,21 @@ import SimpleReactLightbox from "simple-react-lightbox";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ScreenContext } from "../contexts/ScreenContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 if (typeof window !== "undefined") {
     // Client-side-only code
     import("boxicons");
 }
 function MyApp({ Component, pageProps }) {
+    const queryClient = new QueryClient();
     const mobileScreen = useMediaQuery("(max-width:600px)");
     return (
         <ScreenContext.Provider value={{ mobileScreen }}>
             <SimpleReactLightbox>
-                <Component {...pageProps} />
+                <QueryClientProvider client={queryClient}>
+                    <Component {...pageProps} />
+                </QueryClientProvider>
             </SimpleReactLightbox>
         </ScreenContext.Provider>
     );

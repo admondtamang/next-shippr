@@ -1,17 +1,17 @@
 .product-single__info {
-    .product-single__info-btns {
-        display: flex;
-        margin-bottom: 20px;
-        .btn {
-            margin: 0 15px;
-            padding: 8px 22px;
-            @include breakpoint(phone) {
-                padding: 12px 28px;
-            }
-            &.btn--active {
-                // color: var(--color-orange);
-                border: 1px solid var(--color-orange);
-            }
-        }
+  .product-single__info-btns {
+    display: flex;
+    margin-bottom: 20px;
+    .btn {
+      margin: 0 15px;
+      padding: 8px 22px;
+      @include breakpoint(phone) {
+        padding: 12px 28px;
+      }
+      &.btn--active {
+        // color: var(--color-orange);
+        border: 1px solid var(--color-orange);
+      }
     }
+  }
 }
