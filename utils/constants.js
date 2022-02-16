@@ -2,6 +2,7 @@ const url = "/wp-json/wc/v3/";
 
 const PRODUCTS = url + "products";
 const SINGLE_PRODUCTS = PRODUCTS + "?slug=";
+const SEARCH_PRODUCTS = PRODUCTS + "?search=";
 const CUSTOMERS = url + "customers";
 const ORDERS = url + "orders";
 const CATEGORIES = PRODUCTS + "/categories";
@@ -11,13 +12,14 @@ const STATUS = { loading: "loading", success: "success", idle: "idle" };
 const GET_FEEDER = "http://localhost:3000/api/feeder";
 
 export {
-    url,
-    PRODUCTS,
-    SINGLE_PRODUCTS,
-    CATEGORIES,
-    CUSTOMERS,
-    LOGIN_JWT,
-    ORDERS,
-    STATUS,
-    GET_FEEDER,
+  url,
+  PRODUCTS,
+  SINGLE_PRODUCTS,
+  SEARCH_PRODUCTS,
+  CATEGORIES,
+  CUSTOMERS,
+  LOGIN_JWT,
+  ORDERS,
+  STATUS,
+  GET_FEEDER,
 };

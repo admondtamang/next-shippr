@@ -25,15 +25,15 @@ import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
 //     };
 // }
 
-const Product = ({ product }) => {
+const Product = (props) => {
   const router = useRouter();
   const { id } = router.query;
   if (!id) {
     return null;
   }
-  console.log(id);
-  const URL = SINGLE_PRODUCTS + id;
 
+  const URL = SINGLE_PRODUCTS + id;
+  const [product, setFinalData] = useState([]);
   const [showBlock, setShowBlock] = useState("description");
   const { mobileScreen } = useContext(ScreenContext);
 
@@ -42,12 +42,16 @@ const Product = ({ product }) => {
     URL
   );
 
-  useEffect(() => {}, [id]);
+  useEffect(() => {
+    console.log(response);
+    if (typeof response == "object" && response.length > 0)
+      setFinalData(response[0]);
+  }, [product]);
+  console.log("out", product);
 
-  if (isLoading) {
+  if (isLoading || !product) {
     return "Loading";
   }
-  product = response[0];
 
   return (
     <Layout>
