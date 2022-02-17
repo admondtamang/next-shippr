@@ -20,6 +20,15 @@ export default function Gallery({ images }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
+  const noPicture = [
+    {
+      src: "https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js-bg.png",
+    },
+  ];
+  if (!images) {
+    images = noPicture;
+  }
+  images = images?.length > 0 ? images : noPicture;
   const openLightbox = useCallback((event, { index }) => {
     setCurrentImage(index);
     setViewerIsOpen(true);

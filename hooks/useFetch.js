@@ -2,7 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axios";
 
-const useFetch = (url, options) => {
+// Call upon
+//
+// const {
+//   response,
+//   error,
+//   status: { isIdle, isLoading, isRejected, isResolved },
+// } = useFetch(URL, {});
+
+const useFetch = (url, options, dependent) => {
   const [response, setResponse] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState("idle");
@@ -40,7 +48,8 @@ const useFetch = (url, options) => {
     return () => {
       source.cancel();
     };
-  }, [url]);
+  }, [url, dependent]);
+
   return {
     response,
     error,

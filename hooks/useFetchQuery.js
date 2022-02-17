@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import axiosInstance from "../utils/axios";
 
@@ -10,6 +10,8 @@ import axiosInstance from "../utils/axios";
  * @returns {resopnse, error,isLoading, status}
  */
 const useFetchQuery = (queryName, url, options, dependent) => {
+  // const [data, setData] = useState([])
+
   const { isLoading, error, data, status } = useQuery(queryName, () =>
     axiosInstance
       .get(url, { ...options })

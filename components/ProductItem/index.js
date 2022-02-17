@@ -20,9 +20,9 @@ export default function ProductItem({ item, small_product }) {
   let image;
   if (typeof images == "object") {
     image =
-      images?.length < 0
+      images?.length <= 0
         ? "https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js-bg.png"
-        : images[0].src;
+        : images[0]?.src;
   }
 
   if (small_product)

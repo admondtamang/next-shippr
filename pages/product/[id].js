@@ -9,7 +9,7 @@ import Content from "../../components/product-single/content";
 import ProductCarousel from "../../components/ProductCarousel";
 import { ScreenContext } from "../../contexts";
 import { useRouter } from "next/router";
-import { useFetchQuery } from "../../hooks";
+import { useFetch, useFetchQuery } from "../../hooks";
 import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
 // import { server } from "../../utils/server";
 
@@ -33,23 +33,22 @@ const Product = (props) => {
   }
 
   const URL = SINGLE_PRODUCTS + id;
-  const [product, setFinalData] = useState([]);
+  const [product, setFinalData] = useState({});
   const [showBlock, setShowBlock] = useState("description");
   const { mobileScreen } = useContext(ScreenContext);
 
-  const { error, isLoading, status, response } = useFetchQuery(
-    "single_product",
-    URL
-  );
+  const {
+    response,
+    error,
+    status: { isIdle, isLoading, isRejected, isResolved },
+  } = useFetch(URL, {});
 
   useEffect(() => {
-    console.log(response);
     if (typeof response == "object" && response.length > 0)
       setFinalData(response[0]);
   }, [product]);
-  console.log("out", product);
 
-  if (isLoading || !product) {
+  if (isLoading || Object.keys(product).length <= 0) {
     return "Loading";
   }
 
