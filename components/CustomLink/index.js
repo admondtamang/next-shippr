@@ -1,10 +1,15 @@
 import Link from "next/link";
+import Router from "next/router";
 import React from "react";
 
 export default function CustomLink({ href, children, ...rest }) {
-    return (
-        <Link href={`${href || "/"}`} {...rest}>
-            <a>{children}</a>
-        </Link>
-    );
+  function toPage() {
+    Router.push(href || "");
+  }
+
+  return (
+    <span onClick={toPage} {...rest}>
+      {children}
+    </span>
+  );
 }

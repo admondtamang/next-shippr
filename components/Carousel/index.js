@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/lazy";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import CustomImage from "../CustomImage";
 
 // import required modules
 
@@ -45,10 +46,10 @@ export default function Carousel({ height, images }) {
       >
         {images.map(({ image }, index) => (
           <SwiperSlide key={index}>
-            <Image
+            <CustomImage
               layout="responsive"
               src={image || ""}
-              alt=""
+              alt="image"
               width={500}
               height={height || 150}
               placeholder="blur"

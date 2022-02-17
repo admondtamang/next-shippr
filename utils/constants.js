@@ -2,7 +2,7 @@ const url = "/wp-json/wc/v3/";
 
 const PRODUCTS = url + "products";
 const SINGLE_PRODUCTS = PRODUCTS + "?slug=";
-const SEARCH_PRODUCTS = PRODUCTS + "?search=";
+const SEARCH_PRODUCTS = PRODUCTS + "?limit=5&search=";
 const CUSTOMERS = url + "customers";
 const ORDERS = url + "orders";
 const CATEGORIES = PRODUCTS + "/categories";

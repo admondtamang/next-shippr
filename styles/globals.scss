@@ -1,36 +1,43 @@
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
-    padding: 0;
-    color: black;
+  padding: 0;
+  color: black;
 }
 .line-clamp {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .css-imwso6-MuiBottomNavigationAction-label {
-    font-family: "Poppins";
-    font-weight: 500;
+  font-family: "Poppins";
+  font-weight: 500;
 }
-
+// img {
+//   position: static !important;
+// }
+.imageWrapper {
+  div:first-child {
+    position: "static !important";
+  }
+}
 // page
 .error-page {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0;
+  min-height: calc(100vh - 200px);
+  h1 {
+    font-size: 44px;
+    margin: 0 auto 20px auto;
     text-align: center;
-    padding: 60px 0;
-    min-height: calc(100vh - 200px);
-    h1 {
-        font-size: 44px;
-        margin: 0 auto 20px auto;
-        text-align: center;
-    }
-    p {
-        line-height: 160%;
-        font-size: 15px;
-        margin-bottom: 40px;
-    }
-    .btn {
-        margin: 0 auto;
-    }
+  }
+  p {
+    line-height: 160%;
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+  .btn {
+    margin: 0 auto;
+  }
 }

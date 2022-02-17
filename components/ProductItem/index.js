@@ -65,7 +65,7 @@ export default function ProductItem({ item, small_product }) {
           alt={slug}
           width={230}
           height={200}
-          className="rounded w-full"
+          className="rounded relative w-full"
         />
         <div className="product__description mt-2">
           <h3 className="line-clamp">{name}</h3>

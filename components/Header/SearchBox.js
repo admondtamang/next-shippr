@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Tooltip } from "@mui/material";
 import Icon from "../Icon";
 import ProductItem from "../ProductItem";
-import jsonProducts from "../../json/json-products";
-import useFetch from "../../hooks/useFetch";
+import { useFetch, useClickOutside } from "../../hooks";
 import { SEARCH_PRODUCTS } from "../../utils/constants";
+import Router from "next/router";
+
 export default function SearchBox() {
   const [visible, setVisible] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const ref = useRef();
+
+  useClickOutside(ref, () => {
+    setVisible(false);
+  });
 
   //   URL
   const url = SEARCH_PRODUCTS + searchTerm;
@@ -18,37 +24,52 @@ export default function SearchBox() {
     status: { isLoading, isResolved },
   } = useFetch(searchTerm ? url : null);
 
+  console.log(isLoading, isResolved, isLoading && searchTerm != "");
   function handleChange(e) {
+    setVisible(true);
     setSearchTerm(e.target.value);
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    Router.push({
+      pathname: "/search",
+      query: { searchTerm },
+    });
+  }
+
   return (
-    <div className="searchbox relative">
-      <form className="search_bar rounded-full border-2 w-full flex items-center px-2">
-        <Icon name="search-alt-2" />
+    <form
+      onSubmit={onSubmit}
+      className="search_bar relative rounded-full border-2 w-full flex items-center px-2"
+    >
+      <Icon name="search-alt-2" />
 
-        <input
-          className="outline-none border-0 py-2 ml-2 text-sm w-full"
-          type="text"
-          onChange={handleChange}
-          placeholder="Search products"
-        />
+      <input
+        className="outline-none border-0 py-2 ml-2 text-sm w-full"
+        type="text"
+        onChange={handleChange}
+        placeholder="Search products"
+      />
 
-        <Tooltip title="Search">
-          <div className="flex-center rounded-full p-1 bg-secondary-500">
-            <Icon name="search-alt-2" color="white" />
-          </div>
-        </Tooltip>
-      </form>
+      {/* Submit button */}
+      <Tooltip title="Search" onClick={onSubmit}>
+        <div className="flex-center rounded-full p-1 bg-secondary-500">
+          <Icon name="search-alt-2" color="white" />
+        </div>
+      </Tooltip>
+
+      {/* View for search data */}
       <div
-        className={`absolute mt-10 rounded-full bottom-4 top-0 z-50 ${
+        ref={ref}
+        className={`absolute w-full mt-10 rounded-full bottom-4 p-2 px-4 top-0 z-50 ${
           visible ? "visible" : "invisible"
         }`}
       >
-        {isLoading
-          ? "Loding"
-          : response.map((item) => <ProductItem item={item} small_product />)}
+        {isLoading && searchTerm != "" && <p>Loading</p>}
+        {isResolved &&
+          response.map((item) => <ProductItem item={item} small_product />)}
       </div>
-    </div>
+    </form>
   );
 }

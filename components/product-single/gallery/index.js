@@ -63,7 +63,7 @@ export default function Gallery({ images }) {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <CustomImage
-              layout="responsive"
+              layout="fill"
               src={image.src}
               alt=""
               width={200}
