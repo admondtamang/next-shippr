@@ -2,7 +2,9 @@ const url = "/wp-json/wc/v3/";
 
 const PRODUCTS = url + "products";
 const SINGLE_PRODUCTS = PRODUCTS + "?slug=";
-const SEARCH_PRODUCTS = PRODUCTS + "?limit=5&search=";
+const SEARCH_PRODUCTS = PRODUCTS + "?per_page=5&search=";
+const RELATED_IDS = PRODUCTS + "?related_ids=";
+
 const CUSTOMERS = url + "customers";
 const ORDERS = url + "orders";
 const CATEGORIES = PRODUCTS + "/categories";
@@ -20,6 +22,7 @@ export {
   CUSTOMERS,
   LOGIN_JWT,
   ORDERS,
+  RELATED_IDS,
   STATUS,
   GET_FEEDER,
 };

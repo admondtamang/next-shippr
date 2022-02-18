@@ -8,7 +8,7 @@ export default function CustomLink({ href, children, ...rest }) {
   }
 
   return (
-    <span onClick={toPage} {...rest}>
+    <span style={{ cursor: "pointer" }} onClick={toPage} {...rest}>
       {children}
     </span>
   );

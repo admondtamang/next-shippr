@@ -65,11 +65,11 @@ export default function Gallery({ images }) {
             <CustomImage
               layout="fill"
               src={image.src}
-              alt=""
+              alt={image.src}
               width={200}
-              height={150}
+              height={400}
               onClick={(e) => openLightbox(e, { index })}
-              className="rounded object-contain shadow cursor-pointer"
+              className="rounded object-contain shadow w-full h-44   cursor-pointer"
             />
           </SwiperSlide>
         ))}
@@ -91,7 +91,7 @@ export default function Gallery({ images }) {
               alt=""
               width={200}
               height={200}
-              className="swiper-lazy object-contain rounded shadow-lg border-2 cursor-pointer"
+              className="swiper-lazy object-contain rounded shadow-lg border-2 bg-primary-400 cursor-pointer"
             />
           </SwiperSlide>
         ))}

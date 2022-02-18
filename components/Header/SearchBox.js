@@ -62,7 +62,7 @@ export default function SearchBox() {
       {/* View for search data */}
       <div
         ref={ref}
-        className={`absolute w-full mt-10 rounded-full bottom-4 p-2 px-4 top-0 z-50 ${
+        className={`absolute w-full mt-10 rounded-full bottom-4 px-4  top-0 z-50 ${
           visible ? "visible" : "invisible"
         }`}
       >

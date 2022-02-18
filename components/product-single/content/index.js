@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { some } from "lodash";
 import { ADD_TO_CART } from "../../../redux/cart/cartSlice";
-import { CustomLink } from "../..";
+import { CustomLink, CustomImage } from "../..";
 import OutlineButton from "../../OutlineButton";
 import { shouldForwardProp } from "@mui/styled-engine";
 
@@ -58,7 +58,7 @@ const Content = ({ product }) => {
   }
 
   return (
-    <section className="container flex flex-col gap-7">
+    <section className="container flex flex-col gap-8">
       <div className="product-filter-item">
         {regular_price && <div className="pill w-11">Sale</div>}
         <h1 className="text-3xl font-light h2 mb-3">{name}</h1>
@@ -120,19 +120,29 @@ const Content = ({ product }) => {
       {/* sku */}
       {sku && (
         <div className="product-filter-item ">
-          <h5 className="text-sm mb-2 text-gray-400">Sku: {sku}</h5>
+          <h5 className="text-sm mb-2 text-gray-400">Sku: </h5>
+          <p className="font-normal">{sku}</p>
         </div>
       )}
 
-      <div className="border-2  border-gray-200 p-6 rounded-lg flex justify-between gap-4">
-        <img src={store.vendor_shop_logo} width={80} className="rounded-lg" />
+      <div className="border-2 flex-wrap border-gray-200 p-6 rounded-lg flex  gap-4  md:flex-nowrap">
+        <CustomImage
+          src={
+            store?.vendor_shop_logo ||
+            "https://facebook.github.io/react/img/logo_small.png"
+          }
+          layout="responsive"
+          width={80}
+          height={80}
+          className="w-full object-cover rounded-lg md:h-full "
+        />
         <div className="text-left">
           <h1 className="font-bold text-xl text-gray-800">
             {store.vendor_shop_name}
           </h1>
           <span className="text-gray-500">{store.vendor_address}</span>
         </div>
-        <OutlineButton label={"Visit Store"} />
+        <OutlineButton label={"Visit Store"} no_spacing />
       </div>
     </section>
   );

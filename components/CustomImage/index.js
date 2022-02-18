@@ -4,8 +4,13 @@ import icon from "./icon.png";
 
 export default function CustomImage({ className, ...rest }) {
   return (
-    <div className="pt-2 imageWrapper">
-      <Image placeholder="blur" blurDataURL={icon} {...rest} />
+    <div className="pt-2 imageContainer ">
+      <Image
+        placeholder="blur"
+        blurDataURL={icon}
+        className="image"
+        {...rest}
+      />
     </div>
   );
 }

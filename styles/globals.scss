@@ -1,7 +1,8 @@
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
-  padding: 0;
+  padding: 0 !important;
   color: black;
 }
+
 .line-clamp {
   display: -webkit-box;
   overflow: hidden;
@@ -12,14 +13,7 @@
   font-family: "Poppins";
   font-weight: 500;
 }
-// img {
-//   position: static !important;
-// }
-.imageWrapper {
-  div:first-child {
-    position: "static !important";
-  }
-}
+
 // page
 .error-page {
   display: flex;

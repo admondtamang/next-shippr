@@ -29,14 +29,14 @@ export default function ProductItem({ item, small_product }) {
     return (
       <CustomLink href={`/product/${slug}`}>
         <div className=" w-full rounded p-1 flex bg-primary-50 hover:bg-primary-50">
-          <CustomImage
+          {/* <CustomImage
             layout="responsive"
             src={image}
             alt={slug}
             width={230}
             height={200}
             className="rounded"
-          />
+          /> */}
           <div className="product__description mt-2">
             <h3 className="line-clamp">{name}</h3>
             <div className="product__price flex items-center mt-2">

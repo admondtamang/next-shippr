@@ -24,134 +24,134 @@
 @import "./module/breadcrum.scss";
 
 .container {
-    max-width: 380px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  @include breakpoint(phone) {
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-    @include breakpoint(phone) {
-        max-width: 650px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    @include breakpoint(tablet-lg) {
-        max-width: 980px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    @include breakpoint(desktop-lg) {
-        max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  }
+  @include breakpoint(tablet-lg) {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include breakpoint(desktop-lg) {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .btn {
-    color: #000000;
-    cursor: pointer;
-    &.btn--rounded {
-        font-size: 12px;
-        background: #fff;
-        display: inline-block;
-        border-radius: 50px;
-        padding: 11px 20px;
-        font-weight: 500;
-        text-transform: uppercase;
-        @include breakpoint(phone) {
-            font-size: 13px;
-            padding: 15px 25px;
-        }
-        &.btn--border {
-            border: 1px solid #d8d8d8;
-        }
-        &.btn--yellow {
-            background-color: var(--color-orange);
-        }
+  color: #000000;
+  cursor: pointer;
+  &.btn--rounded {
+    font-size: 12px;
+    background: #fff;
+    display: inline-block;
+    border-radius: 50px;
+    padding: 11px 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    @include breakpoint(phone) {
+      font-size: 13px;
+      padding: 15px 25px;
     }
+    &.btn--border {
+      border: 1px solid #d8d8d8;
+    }
+    &.btn--yellow {
+      background-color: var(--color-orange);
+    }
+  }
 }
 
 .featured {
-    padding: 35px 0 62px 0;
+  padding: 35px 0 62px 0;
+  @include breakpoint(phone) {
+    padding: 70px 0 92px 0;
+  }
+  .container {
     @include breakpoint(phone) {
-        padding: 70px 0 92px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
-    .container {
+    @include breakpoint(tablet-lg) {
+      display: grid;
+      grid-gap: 34px;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas: "\31  \31  \31  \31  \31  \31  \32  \32  \32  \33  \33  \33 ";
+    }
+  }
+  .featured-item-large {
+    grid-area: \31;
+    width: 100%;
+  }
+  .featured-item-small-first {
+    grid-area: \32;
+    @include breakpoint(phone) {
+      width: 49%;
+    }
+    @include breakpoint(tablet-lg) {
+      width: 100%;
+    }
+  }
+  .featured-item-small {
+    grid-area: \33;
+    @include breakpoint(phone) {
+      width: 49%;
+    }
+    @include breakpoint(tablet-lg) {
+      width: 100%;
+    }
+  }
+  .featured-item {
+    height: 200px;
+    display: flex;
+    margin-bottom: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 21px 22px;
+    position: relative;
+    @include breakpoint(phone) {
+      height: 375px;
+      padding: 55px 46px;
+      margin-bottom: 10px;
+    }
+    @include breakpoint(tablet-lg) {
+      margin-bottom: 0;
+    }
+    &:before {
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      height: 100%;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.28);
+    }
+    .featured-item__content {
+      margin-top: auto;
+      position: relative;
+      z-index: 2;
+      h3 {
+        font-weight: 400;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 15px;
+        line-height: 150%;
         @include breakpoint(phone) {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+          font-size: 23px;
+          margin-bottom: 20px;
         }
-        @include breakpoint(tablet-lg) {
-            display: grid;
-            grid-gap: 34px;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-template-areas: "\31  \31  \31  \31  \31  \31  \32  \32  \32  \33  \33  \33 ";
-        }
+      }
     }
-    .featured-item-large {
-        grid-area: \31;
-        width: 100%;
-    }
-    .featured-item-small-first {
-        grid-area: \32;
-        @include breakpoint(phone) {
-            width: 49%;
-        }
-        @include breakpoint(tablet-lg) {
-            width: 100%;
-        }
-    }
-    .featured-item-small {
-        grid-area: \33;
-        @include breakpoint(phone) {
-            width: 49%;
-        }
-        @include breakpoint(tablet-lg) {
-            width: 100%;
-        }
-    }
-    .featured-item {
-        height: 200px;
-        display: flex;
-        margin-bottom: 10px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 21px 22px;
-        position: relative;
-        @include breakpoint(phone) {
-            height: 375px;
-            padding: 55px 46px;
-            margin-bottom: 10px;
-        }
-        @include breakpoint(tablet-lg) {
-            margin-bottom: 0;
-        }
-        &:before {
-            content: "";
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1;
-            height: 100%;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.28);
-        }
-        .featured-item__content {
-            margin-top: auto;
-            position: relative;
-            z-index: 2;
-            h3 {
-                font-weight: 400;
-                font-size: 20px;
-                color: #fff;
-                margin-bottom: 15px;
-                line-height: 150%;
-                @include breakpoint(phone) {
-                    font-size: 23px;
-                    margin-bottom: 20px;
-                }
-            }
-        }
-    }
+  }
 }

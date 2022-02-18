@@ -11,6 +11,7 @@ import { ScreenContext } from "../../contexts";
 import { useRouter } from "next/router";
 import { useFetch, useFetchQuery } from "../../hooks";
 import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
+import Related_ids from "./related_ids";
 // import { server } from "../../utils/server";
 
 // export async function getServerSideProps({ query }) {
@@ -43,6 +44,7 @@ const Product = () => {
   } = useFetch(URL, {}, URL);
 
   let product = response[0];
+
   return (
     <Layout>
       {isLoading ? (
@@ -89,7 +91,7 @@ const Product = () => {
               {/* <Reviews product={product} show={showBlock === "reviews"} /> */}
             </div>
 
-            <ProductCarousel />
+            <Related_ids ids={product.related_ids} />
           </>
         )
       )}
