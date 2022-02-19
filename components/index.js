@@ -3,5 +3,5 @@ import Button from "./Button";
 import Icon from "./Icon";
 import CustomImage from "./CustomImage";
 import CustomLink from "./CustomLink";
-
-export { CustomIconButton, Button, Icon, CustomImage, CustomLink };
+import Loading from "./Loading";
+export { CustomIconButton, Loading, Button, Icon, CustomImage, CustomLink };

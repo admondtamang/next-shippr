@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { CustomImage } from "..";
 import Products from "../../json/json-products";
 import CustomLink from "../CustomLink";
 import ToolTipWithButton from "../ToolTipWithButton";
+import { ScreenContext } from "../../contexts";
 
-export default function ProductItem({ item, small_product }) {
+export default function ProductItem({ item, small_product, lastProductRef }) {
+  const { mobileScreen } = useContext(ScreenContext);
   var discount = 2;
   const { id, name, price, regular_price = 322, images, on_sale, slug } = item;
 
@@ -25,6 +27,7 @@ export default function ProductItem({ item, small_product }) {
         : images[0]?.src;
   }
 
+  // used for search box
   if (small_product)
     return (
       <CustomLink href={`/product/${slug}`}>
@@ -58,14 +61,17 @@ export default function ProductItem({ item, small_product }) {
     );
   return (
     <CustomLink href={`/product/${slug}`}>
-      <div className="product-item w-56 rounded p-1 hover:shadow-lg ">
+      <div
+        className="product-item w-56 rounded-md p-1 hover:shadow-lg "
+        ref={lastProductRef}
+      >
         <CustomImage
           layout="responsive"
           src={image}
           alt={slug}
-          width={230}
-          height={200}
-          className="rounded relative w-full"
+          width={mobileScreen ? 110 : 220}
+          height={mobileScreen ? 150 : 250}
+          className="rounded-md  w-full"
         />
         <div className="product__description mt-2">
           <h3 className="line-clamp">{name}</h3>

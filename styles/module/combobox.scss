@@ -1,0 +1,29 @@
+.select-wrapper {
+  position: relative;
+  &:before {
+    right: 15px;
+    font-family: "icons";
+    display: block;
+    position: absolute;
+    content: "\e801";
+    top: 50%;
+    color: #aaaaaa;
+    font-size: 16px;
+    transform: translateY(-50%);
+  }
+  select {
+    font-size: 15px;
+    padding: 9px 38px 9px 12px;
+    border: 1px solid #d8d8d8;
+    background: white;
+    border-radius: 50px;
+    option {
+      font-size: 15px;
+    }
+  }
+  &.select-form {
+    select {
+      width: 100%;
+    }
+  }
+}

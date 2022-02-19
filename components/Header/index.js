@@ -15,7 +15,7 @@ export default function Header() {
   const { mobileScreen } = useContext(ScreenContext);
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full sticky top-0 bg-white">
       <header className="container flex-center gap-4 py-6 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full sm:px-6 bg-white z-auto">
         {/* category */}
         <div className="flex-center">

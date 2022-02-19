@@ -8,7 +8,7 @@ export default function CustomImage({ className, ...rest }) {
       <Image
         placeholder="blur"
         blurDataURL={icon}
-        className="image"
+        className={`image ${className}`}
         {...rest}
       />
     </div>

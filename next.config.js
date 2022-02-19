@@ -10,4 +10,5 @@ module.exports = {
       "icms-image.slatic.net",
     ],
   },
+  scrollRestoration: true,
 };
