@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import Layout from "../../components/Layout";
+import { Layout, Loading } from "../../components";
 import Breadcrumb from "../../components/Breadcrumb";
 import Gallery from "../../components/product-single/gallery";
 import Description from "../../components/product-single/description";
@@ -48,7 +48,7 @@ const Product = () => {
   return (
     <Layout>
       {isLoading ? (
-        <div className="container">loading</div>
+        <Loading />
       ) : (
         isResolved && (
           <>

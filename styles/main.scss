@@ -25,6 +25,18 @@
 //components
 @import "./module/breadcrum.scss";
 
+.app-main {
+  padding-top: 90px;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: block;
+  z-index: 1000;
+  width: 100%;
+}
 .container {
   max-width: 380px;
   margin-left: auto;

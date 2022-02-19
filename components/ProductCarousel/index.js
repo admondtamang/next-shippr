@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import jsonProducts from "../../json/json-products";
@@ -9,8 +9,11 @@ import "swiper/css/free-mode";
 // import required modules
 import { FreeMode, Pagination } from "swiper";
 import ProductItem from "../ProductItem";
+import { ScreenContext } from "../../contexts";
 
 export default function ProductCarousel({ products }) {
+  const { mobileScreen } = useContext(ScreenContext);
+
   const data =
     typeof products == "object" && products?.length > 0
       ? products
@@ -24,8 +27,8 @@ export default function ProductCarousel({ products }) {
         </h3>
       </div>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={40}
+        slidesPerView={mobileScreen ? 2 : 5}
+        spaceBetween={mobileScreen ? 10 : 40}
         freeMode={true}
         modules={[FreeMode]}
       >
