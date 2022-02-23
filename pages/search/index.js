@@ -7,12 +7,13 @@ export default function Search({ props }) {
   console.log(query);
   return (
     <Layout>
-      <h1 className="container font-bold text-lg">
-        Reasult for "
-        <span className="text-primary-300">{query.searchTerm}</span>"
-      </h1>
-
-      <InfiniteProducts />
+      <div className="container">
+        <h1 className="font-bold text-lg">
+          Reasult for &apos;
+          <span className="text-primary-300">{query.searchTerm}</span>&apos;
+        </h1>
+        <InfiniteProducts search_page />
+      </div>
     </Layout>
   );
 }

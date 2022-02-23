@@ -10,13 +10,15 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 // import ImagePreview from "../../ImagePreview";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import ImagePreview from "../ImagePreview";
+import { ScreenContext } from "../../../contexts";
 
 export default function Gallery({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const { mobileScreen } = useContext(ScreenContext);
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
@@ -39,7 +41,7 @@ export default function Gallery({ images }) {
     setViewerIsOpen(false);
   };
   return (
-    <div className="flex w-6/12 gap-8 flex-col">
+    <div className="flex w-6/12 h-full gap-8 flex-col">
       <ModalGateway>
         {viewerIsOpen && (
           <Modal onClose={closeLightbox}>
@@ -63,13 +65,13 @@ export default function Gallery({ images }) {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <CustomImage
-              layout="fill"
+              layout="responsive"
               src={image.src}
               alt={image.src}
-              width={200}
-              height={400}
+              width={mobileScreen ? 200 : 200}
+              height={mobileScreen ? 300 : 150}
               onClick={(e) => openLightbox(e, { index })}
-              className="rounded object-contain shadow w-full h-44   cursor-pointer"
+              className="rounded object-contain shadow w-full cursor-pointer"
             />
           </SwiperSlide>
         ))}
@@ -89,9 +91,9 @@ export default function Gallery({ images }) {
               layout="responsive"
               src={image.src}
               alt=""
-              width={200}
-              height={200}
-              className="swiper-lazy object-contain rounded shadow-lg border-2 bg-primary-400 cursor-pointer"
+              width={mobileScreen ? 200 : 200}
+              height={mobileScreen ? 250 : 150}
+              className="swiper-lazy object-contain rounded shadow-lg border-2 bg-bg-white cursor-pointer"
             />
           </SwiperSlide>
         ))}

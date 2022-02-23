@@ -24,9 +24,9 @@ const Content = ({ product }) => {
     regular_price,
     images,
   } = product;
-  const pictures = images?.map((img) => {
-    return { uri: img.src };
-  });
+  // const pictures = images?.map((img, index) => {
+  //   return { uri: img.src, key: index };
+  // });
 
   if (regular_price) {
     discount = ((regular_price - price) / regular_price) * 100;
@@ -112,8 +112,10 @@ const Content = ({ product }) => {
       {categories.length > 0 && (
         <div className="product-filter-item ">
           <h5 className="text-sm mb-2 text-gray-400">Categories:</h5>
-          {categories.map((cat) => (
-            <CustomLink to="/">{cat.name + ", "}</CustomLink>
+          {categories.map((cat, index) => (
+            <CustomLink to="/" key={index}>
+              <span dangerouslySetInnerHTML={{ __html: cat.name + ", " }} />
+            </CustomLink>
           ))}
         </div>
       )}
@@ -125,25 +127,28 @@ const Content = ({ product }) => {
         </div>
       )}
 
-      <div className="border-2 flex-wrap border-gray-200 p-6 rounded-lg flex  gap-4  md:flex-nowrap">
-        <CustomImage
-          src={
-            store?.vendor_shop_logo ||
-            "https://facebook.github.io/react/img/logo_small.png"
-          }
-          layout="responsive"
-          width={80}
-          height={80}
-          className="w-full object-cover rounded-lg md:h-full "
-        />
-        <div className="text-left">
-          <h1 className="font-bold text-xl text-gray-800">
-            {store.vendor_shop_name}
-          </h1>
-          <span className="text-gray-500">{store.vendor_address}</span>
+      {/* Store */}
+      {store?.vendor_shop_name && (
+        <div className="border-2 flex-wrap border-gray-200 p-6 rounded-lg flex  gap-4  md:flex-nowrap">
+          <CustomImage
+            src={
+              store?.vendor_shop_logo ||
+              "https://facebook.github.io/react/img/logo_small.png"
+            }
+            layout="responsive"
+            width={80}
+            height={80}
+            className="object-cover rounded-lg md:h-full "
+          />
+          <div className="text-left">
+            <h1 className="font-bold text-xl text-gray-800">
+              {store.vendor_shop_name}
+            </h1>
+            <span className="text-gray-500">{store.vendor_address}</span>
+          </div>
+          <OutlineButton label={"Visit Store"} no_spacing />
         </div>
-        <OutlineButton label={"Visit Store"} no_spacing />
-      </div>
+      )}
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { CustomIconButton } from "..";
 import CustomLink from "../CustomLink";
@@ -10,9 +10,18 @@ import OutlineButton from "../OutlineButton";
 import Icon from "../Icon";
 import { ScreenContext } from "../../contexts";
 import SearchBox from "./SearchBox";
+import { Menu, Skeleton } from "antd";
+import { useClickOutside } from "../../hooks";
+import categoryMenus from "../../utils/data/category";
+
 export default function Header() {
   const { cartItems } = useSelector((state) => state.cart);
   const { mobileScreen } = useContext(ScreenContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const ref = useRef();
+  useClickOutside(ref, () => setIsOpen(false));
+  const { SubMenu } = Menu;
 
   return (
     <div className="w-full sticky top-0 bg-white fixed-top ">
@@ -30,7 +39,34 @@ export default function Header() {
               />
             </ToolTipWithButton>
           </CustomLink>
-          {!mobileScreen && <OutlineButton label={"Category"} />}
+          <div className="relative">
+            {!mobileScreen && (
+              <OutlineButton
+                isOpen={isOpen}
+                label={"Category"}
+                onClick={() => setIsOpen((pre) => !pre)}
+              />
+            )}
+
+            {/* category menu */}
+            <div
+              className={`absolute mt-4 w-80 bg-white rounded-lg p-2 border-2 border-grey-900 ${
+                isOpen ? "visible" : "invisible"
+              }`}
+            >
+              <ul ref={ref}>
+                {categoryMenus.map(({ item, children, index }) => (
+                  <li
+                    key={index}
+                    className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400"
+                  >
+                    <box-icon name="badge" />
+                    <span dangerouslySetInnerHTML={{ __html: item.name }} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Search */}
@@ -61,6 +97,7 @@ export default function Header() {
             </>
 
             {/* Login */}
+
             <OutlineButton label={"Login"} />
           </div>
         )}

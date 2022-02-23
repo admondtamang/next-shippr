@@ -1,43 +1,50 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ProductItem from "../ProductItem";
-import jsonProducts from "../../json/json-products";
-import useFetchQuery from "../../hooks/useAxiosQuery";
-import { PRODUCTS } from "../../utils/constants";
-import { useFetch } from "../../hooks";
+import { PRODUCTS, url_asPath } from "../../utils/constants";
 import { useRouter } from "next/router";
 import axiosInstance from "../../utils/axios";
 import { Loading } from "../../components";
-export default function InfiniteProducts() {
+import { getProducts } from "../../api/products";
+
+export default function InfiniteProducts({ setTotalProduct, search_page }) {
   // const { error, isLoading, status, response } = useFetchQuery(
   //   "search_products",
   //   PRODUCTS
   // );
+
+  const style_search_page =
+    "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 ";
+
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [EndOfContent, setEndOfContent] = useState(false);
+  const [queryLength, setQueryLength] = useState(null);
 
-  let { query } = useRouter();
+  let { asPath, query } = useRouter();
   const observer = useRef();
 
-  // const {
-  //   response,
-  //   res,
-  //   error,
-  //   status: { isIdle, isLoading, isRejected, isResolved },
-  // } = useFetch(PRODUCTS + "?page=" + page, {}, query, hasMore);
-  const URL = PRODUCTS + "?page=" + page;
-  console.log(URL);
+  const URL = PRODUCTS + "?perpage=15&page=" + page;
+  let totalProducts = 0;
 
-  async function getProducts() {
-    const res = await axiosInstance.get(URL);
+  async function handleProducts() {
+    const res = await getProducts(URL);
+    totalProducts = res.headers["x-wp-totalpages"];
+    setTotalProduct && setTotalProduct(totalProducts);
     // Check last page:  current page = last page then return null
-    if (res.headers["x-wp-totalpages"] < page) {
+    if (totalProducts < page) {
       setHasMore(false);
       setEndOfContent(true);
       return "Null";
     }
+
+    // url get changed then set new data
+    if (query != queryLength) {
+      setProducts(res.data);
+    }
+
+    setQueryLength(query);
     if (hasMore) setProducts((pre) => [...new Set([...pre, ...res.data])]);
     // else setProducts(res.data);
   }
@@ -46,11 +53,10 @@ export default function InfiniteProducts() {
     if (!hasMore) return null;
 
     setIsLoading(true);
-
-    await getProducts();
-    // setProducts((pre) => [...new Set([...pre, ...res.data])]);
+    console.log(URL, "===", query, asPath);
+    await handleProducts();
     setIsLoading(false);
-  }, [URL]);
+  }, [URL, query]);
 
   // Get the last products and rerender next page
   const lastProductRef = useCallback(
@@ -71,9 +77,15 @@ export default function InfiniteProducts() {
   );
 
   return (
-    // <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 container">
+    // <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 ">
     <>
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-10">
+      <div
+        className={
+          search_page
+            ? style_search_page
+            : "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-10"
+        }
+      >
         {products.map((item, index) => {
           // Last elemet of array
           if (products.length === index + 1)

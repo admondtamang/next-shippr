@@ -8,6 +8,7 @@ module.exports = {
       "swiperjs.com",
       "sulavshopping.com",
       "icms-image.slatic.net",
+      "35.154.133.111",
     ],
   },
   scrollRestoration: true,

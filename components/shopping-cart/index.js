@@ -18,13 +18,13 @@ const ShoppingCart = () => {
 
   return (
     <section className="cart">
-      <div className="container">
+      <div className="container bg-white p-8 rounded-lg">
         <div className="cart__intro">
           <h3 className="cart__title">Shopping Cart</h3>
           <CheckoutStatus step="cart" />
         </div>
 
-        <div className="cart-list">
+        <div className="cart-list ">
           {cartItems.length > 0 && (
             <table>
               <tbody>
@@ -58,27 +58,29 @@ const ShoppingCart = () => {
         </div>
 
         <div className="cart-actions">
-          <div className="cart__btn-back">
+          <div className="cart__btn-back bg-primary-700 rounded-full p-4 pr-8 hover:bg-primary-300">
             <CustomLink href="/product/34">
               <i className="icon-left"></i> Continue Shopping
             </CustomLink>
           </div>
-          <input
+          {/* <input
             type="text"
             placeholder="Promo Code"
             className="cart__promo-code"
-          />
+          /> */}
 
           <div className="cart-actions__items-wrapper">
             <p className="cart-actions__total">
               Total cost <strong>Rs {priceTotal.toFixed(2)}</strong>
             </p>
-            <CustomLink
-              href="/cart/checkout"
-              className="btn btn--rounded btn--yellow"
-            >
-              Checkout
-            </CustomLink>
+            {priceTotal != 0 && (
+              <CustomLink
+                href="/cart/checkout"
+                className="btn btn--rounded btn--yellow"
+              >
+                Checkout
+              </CustomLink>
+            )}
           </div>
         </div>
       </div>

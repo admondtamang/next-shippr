@@ -60,15 +60,18 @@ export default function SearchBox() {
       </Tooltip>
 
       {/* View for search data */}
-      <div
-        ref={ref}
-        className={`absolute w-full mt-10 rounded-full bottom-4 px-4  top-0 z-50 ${
-          visible ? "visible" : "invisible"
-        }`}
-      >
-        {isLoading && searchTerm != "" && <p>Loading</p>}
-        {isResolved &&
-          response.map((item) => <ProductItem item={item} small_product />)}
+      <div className="absolute w-full mt-10 rounded-full border-bottom-2 font-bold p-2 bg-white bottom-4 px-4 top-0">
+        <div
+          ref={ref}
+          // border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400
+          className={` z-50 ${visible ? "visible" : "invisible"}`}
+        >
+          {isLoading && searchTerm != "" && <p>Loading</p>}
+          {isResolved &&
+            response.map((item) => (
+              <ProductItem item={item} key={item.id} small_product />
+            ))}
+        </div>
       </div>
     </form>
   );

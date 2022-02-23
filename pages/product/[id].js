@@ -12,6 +12,8 @@ import { useRouter } from "next/router";
 import { useFetch, useFetchQuery } from "../../hooks";
 import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
 import Related_ids from "./related_ids";
+import useSWR from "swr";
+import axiosInstance from "../../utils/axios";
 // import { server } from "../../utils/server";
 
 // export async function getServerSideProps({ query }) {
@@ -37,64 +39,64 @@ const Product = () => {
   const [showBlock, setShowBlock] = useState("description");
   const { mobileScreen } = useContext(ScreenContext);
 
-  const {
-    response,
-    error,
-    status: { isIdle, isLoading, isRejected, isResolved },
-  } = useFetch(URL, {}, URL);
+  // const {
+  //   response,
+  //   error,
+  //   status: { isIdle, isLoading, isRejected, isResolved },
+  // } = useFetch(URL, {}, URL);
 
-  let product = response[0];
+  // let product = response[0];
+
+  const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
+
+  const { data, error, isValidating } = useSWR(URL, fetcher);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  let product = data[0];
 
   return (
     <Layout>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        isResolved && (
-          <>
-            <Breadcrumb currentPage={product.name} />
-            <div
-              className={`flex h-2/6 container mb-8 gap-8 ${
-                mobileScreen && "flex-col"
+      <>
+        <Breadcrumb currentPage={product.name} />
+        <div
+          className={`flex h-2/6 container mb-8 gap-8 ${
+            mobileScreen && "flex-col"
+          }`}
+        >
+          <Gallery images={product.images} />
+          <Content product={product} />
+        </div>
+
+        <div className="product-single__info container mb-8">
+          <div className="product-single__info-btns">
+            <button
+              type="button"
+              onClick={() => setShowBlock("description")}
+              className={`btn btn--rounded ${
+                showBlock === "description" ? "btn--active" : ""
               }`}
             >
-              <Gallery images={product.images} />
-              <Content product={product} />
-            </div>
+              Description
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowBlock("reviews")}
+              className={`btn btn--rounded ${
+                showBlock === "reviews" ? "btn--active" : ""
+              }`}
+            >
+              Reviews (2)
+            </button>
+          </div>
 
-            <div className="product-single__info container mb-8">
-              <div className="product-single__info-btns">
-                <button
-                  type="button"
-                  onClick={() => setShowBlock("description")}
-                  className={`btn btn--rounded ${
-                    showBlock === "description" ? "btn--active" : ""
-                  }`}
-                >
-                  Description
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowBlock("reviews")}
-                  className={`btn btn--rounded ${
-                    showBlock === "reviews" ? "btn--active" : ""
-                  }`}
-                >
-                  Reviews (2)
-                </button>
-              </div>
+          <Description product={product} show={showBlock === "description"} />
+          {/* <Reviews product={product} show={showBlock === "reviews"} /> */}
+        </div>
 
-              <Description
-                product={product}
-                show={showBlock === "description"}
-              />
-              {/* <Reviews product={product} show={showBlock === "reviews"} /> */}
-            </div>
-
-            <Related_ids ids={product.related_ids} />
-          </>
-        )
-      )}
+        <Related_ids ids={product.related_ids} />
+      </>
     </Layout>
   );
 };

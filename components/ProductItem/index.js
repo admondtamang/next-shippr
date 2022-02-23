@@ -6,6 +6,7 @@ import Products from "../../json/json-products";
 import CustomLink from "../CustomLink";
 import ToolTipWithButton from "../ToolTipWithButton";
 import { ScreenContext } from "../../contexts";
+import { Card, Tooltip } from "@mui/material";
 
 export default function ProductItem({ item, small_product, lastProductRef }) {
   const { mobileScreen } = useContext(ScreenContext);
@@ -28,18 +29,18 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
   }
 
   // used for search box
-  if (small_product)
+  if (small_product || mobileScreen)
     return (
       <CustomLink href={`/product/${slug}`}>
-        <div className=" w-full rounded p-1 flex bg-primary-50 hover:bg-primary-50">
-          {/* <CustomImage
+        <div className=" w-full rounded-md p-1 flex bg-primary-50 hover:bg-primary-50">
+          <CustomImage
             layout="responsive"
             src={image}
             alt={slug}
             width={230}
             height={200}
             className="rounded"
-          /> */}
+          />
           <div className="product__description mt-2">
             <h3 className="line-clamp">{name}</h3>
             <div className="product__price flex items-center mt-2">
@@ -61,35 +62,39 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
     );
   return (
     <CustomLink href={`/product/${slug}`}>
-      <div
-        className="product-item w-56 rounded-md p-1 hover:shadow-lg "
-        ref={lastProductRef}
-      >
-        <CustomImage
-          layout="responsive"
-          src={image}
-          alt={slug}
-          width={mobileScreen ? 110 : 220}
-          height={mobileScreen ? 150 : 250}
-          className="rounded-md  w-full"
-        />
-        <div className="product__description mt-2">
-          <h3 className="line-clamp">{name}</h3>
-          <div className="product__price flex items-center mt-2">
-            <h4 className="font-bold text-primary-400">Rs. {price}</h4>
-            {on_sale && (
-              <span className="line-through text-sm text-primary-300 pl-2">
-                Rs.{regular_price}
-              </span>
-            )}
-            {discount != 0 && (
-              <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">
-                -{discount}%
-              </span>
-            )}
+      <Card>
+        <div
+          className="product-item w-56 rounded-md p-2 px-2 hover:shadow-lg "
+          ref={lastProductRef}
+        >
+          <CustomImage
+            layout="responsive"
+            src={image}
+            alt={slug}
+            width={mobileScreen ? 110 : 220}
+            height={mobileScreen ? 150 : 250}
+            className="rounded-md object-contain w-full"
+          />
+          <div className="product__description mt-2">
+            <Tooltip title={name}>
+              <h3 className="line-clamp font-bold text-bg-gray-700">{name}</h3>
+            </Tooltip>
+            <div className="product__price flex items-center mt-2">
+              <h4 className="font-bold text-primary-400">Rs. {price}</h4>
+              {on_sale && (
+                <span className="line-through text-sm text-primary-300 pl-2">
+                  Rs.{regular_price}
+                </span>
+              )}
+              {discount != 0 && (
+                <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">
+                  -{discount}%
+                </span>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Card>
     </CustomLink>
   );
 }

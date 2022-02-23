@@ -45,6 +45,7 @@ export default function MobileBottomNavigation() {
       >
         {navigation_data.map(({ label, icon, href }, index) => (
           <BottomNavigationAction
+            key={index}
             onClick={() => toPage(href)}
             label={label}
             icon={<Icon name={icon} />}
