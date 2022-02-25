@@ -26,9 +26,9 @@ export default function ProductCarousel({ products, title, category_id }) {
   }
 
   return (
-    <div className="productCarousel container">
+    <div className="mb-8 container">
       <div className="flex-center-between">
-        <h1 className="font-bold text-2xl mb-8">
+        <h1 className="font-bold text-2xl mb-4">
           {title || "Featured Product"}
         </h1>
 

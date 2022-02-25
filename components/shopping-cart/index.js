@@ -61,7 +61,7 @@ const ShoppingCart = () => {
         <div className="cart-actions">
           {/* <Button variant={"icon-button"} title="Continue Shopping" /> */}
           <div className="cart__btn-back bg-primary-200 rounded-full p-4 pr-8 hover:bg-primary-300">
-            <CustomLink href="/product/34">
+            <CustomLink href="/">
               <i className="icon-left"></i> Continue Shopping
             </CustomLink>
           </div>

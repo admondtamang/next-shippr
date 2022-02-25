@@ -26,7 +26,7 @@ const CheckoutPage = () => {
 
   return (
     <Layout>
-      <section className="cart">
+      <section className="cart p-4 bg-white">
         <div className="container">
           <form className="form">
             <div className="cart__intro">
@@ -114,18 +114,21 @@ const CheckoutPage = () => {
 
             <div className="cart-actions cart-actions--checkout">
               <span className="cart__btn-back">
-                <CustomLink href="/cart">
+                <CustomLink
+                  href="/cart"
+                  className="border-2 border-gray-600 p-5 px-4 py-3 rounded-full"
+                >
                   <i className="icon-left"></i> Back
                 </CustomLink>
               </span>
               <div className="cart-actions__items-wrapper">
+                <Button title="Continue shopping" />
                 {/* <button type="button" className="btn btn--rounded btn--border">
                                     Continue shopping
                                 </button> */}
                 {/* <button type="button" className="btn btn--rounded btn--yellow">
                                     Proceed to checkout
                                 </button> */}
-                <Button title="Continue shopping" />
                 <Button title="Proceed to checkout" borderd />
               </div>
             </div>

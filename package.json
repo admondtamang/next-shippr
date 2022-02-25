@@ -35,6 +35,7 @@
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.5",
     "sass": "^1.49.7",
+    "sharp": "^0.30.1",
     "simple-react-lightbox": "^3.6.9-0",
     "swiper": "^8.0.0",
     "swr": "^1.2.2"
