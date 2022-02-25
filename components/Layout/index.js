@@ -5,11 +5,17 @@ import Footer from "../Footer";
 import BottomNavigation from "../Mobile/MobileBottomNavigation";
 import { ScreenContext } from "../../contexts";
 import { useContext } from "react";
+import { Loading } from "..";
 
-export default function Layout({ children, title = "Shippr Ecommerce" }) {
+export default function Layout({
+  children,
+  title = "Shippr Ecommerce",
+  status,
+}) {
   const router = useRouter();
   const pathname = router.pathname;
   const { mobileScreen } = useContext(ScreenContext);
+
   return (
     <div className="app-main">
       <Head>
@@ -20,7 +26,9 @@ export default function Layout({ children, title = "Shippr Ecommerce" }) {
 
       <Header />
 
-      <main className={pathname !== "/" ? "main-page" : ""}>{children}</main>
+      <main className={pathname !== "/" ? "main-page" : ""}>
+        {status?.isLoading ? <Loading /> : children}
+      </main>
 
       <div className="relative">
         <Footer />

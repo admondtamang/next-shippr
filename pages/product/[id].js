@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Layout, Loading } from "../../components";
+import { Layout, Loading, ShowComponentInView } from "../../components";
 import Breadcrumb from "../../components/Breadcrumb";
 import Gallery from "../../components/product-single/gallery";
 import Description from "../../components/product-single/description";
@@ -8,15 +8,14 @@ import products from "../../json/json-products";
 import Content from "../../components/product-single/content";
 import ProductCarousel from "../../components/ProductCarousel";
 import { ScreenContext } from "../../contexts";
-import { useRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
 import Related_ids from "./related_ids";
 import useSWR from "swr";
 import axiosInstance from "../../utils/axios";
 
-const Product = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const Product = (props) => {
+  const { id } = props.router.query;
   if (!id) {
     return null;
   }
@@ -30,13 +29,12 @@ const Product = () => {
   const { data, error } = useSWR(URL, fetcher);
 
   if (error) return <Layout>failed to load</Layout>;
-  if (!data) return <Loading />;
   if (data?.length === 0) return <Layout>No Product Found</Layout>;
 
-  let product = data[0];
+  let product = typeof data == "object" ? data[0] : [];
 
   return (
-    <Layout>
+    <Layout status={{ isLoading: !data, error }}>
       <>
         <Breadcrumb currentPage={product.name} />
         <div
@@ -73,11 +71,12 @@ const Product = () => {
           <Description product={product} show={showBlock === "description"} />
           {/* <Reviews product={product} show={showBlock === "reviews"} /> */}
         </div>
-
-        <Related_ids ids={product.related_ids} />
+        <ShowComponentInView
+          component={<Related_ids ids={product.related_ids} />}
+        />
       </>
     </Layout>
   );
 };
 
-export default Product;
+export default withRouter(Product);

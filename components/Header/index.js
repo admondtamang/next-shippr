@@ -12,7 +12,7 @@ import { ScreenContext } from "../../contexts";
 import SearchBox from "./SearchBox";
 import { Menu, Skeleton } from "antd";
 import { useClickOutside } from "../../hooks";
-import categoryMenus from "../../utils/data/category";
+import categoryMenus from "../../utils/data/categories";
 
 export default function Header() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <div className="w-full sticky top-0 bg-white fixed-top ">
-      <header className="container flex-center gap-4 py-6 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full  bg-white z-auto">
+      <header className="container flex-center gap-4 py-4 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full  bg-white z-auto">
         {/* category */}
         <div className="flex-center">
           <CustomLink href="/">
@@ -55,13 +55,13 @@ export default function Header() {
               }`}
             >
               <ul ref={ref}>
-                {categoryMenus.map(({ item, children, index }) => (
+                {categoryMenus.map(({ name, id, slug }) => (
                   <li
-                    key={index}
+                    key={id}
                     className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400"
                   >
                     <box-icon name="badge" />
-                    <span dangerouslySetInnerHTML={{ __html: item.name }} />
+                    <span dangerouslySetInnerHTML={{ __html: name }} />
                   </li>
                 ))}
               </ul>
