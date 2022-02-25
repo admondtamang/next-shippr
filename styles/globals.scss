@@ -39,3 +39,8 @@
 body {
   background: #f9f9f9;
 }
+
+// fix react-images override to align center.
+.react-images__view-image {
+  margin: 0 auto;
+}
