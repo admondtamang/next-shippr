@@ -16,18 +16,13 @@ import axiosInstance from "../../utils/axios";
 
 const Product = (props) => {
   const { id } = props.router.query;
-  if (!id) {
-    return null;
-  }
 
   const URL = SINGLE_PRODUCTS + id;
   const [showBlock, setShowBlock] = useState("description");
   const { mobileScreen } = useContext(ScreenContext);
 
   const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
-
   const { data, error } = useSWR(URL, fetcher);
-
   if (error) return <Layout>failed to load</Layout>;
   if (data?.length === 0) return <Layout>No Product Found</Layout>;
 
