@@ -13,7 +13,7 @@ import { ScreenContext } from "../../contexts";
 import OutlineButton from "../OutlineButton";
 import Router from "next/router";
 
-export default function ProductCarousel({ products }) {
+export default function ProductCarousel({ products, title, category_id }) {
   const { mobileScreen } = useContext(ScreenContext);
 
   const data =
@@ -28,15 +28,17 @@ export default function ProductCarousel({ products }) {
   return (
     <div className="productCarousel container">
       <div className="flex-center-between">
-        <h1 className="font-bold text-2xl mb-8">Featured Product</h1>
-        {/* <h3 className="bg-gray-600 p-1 px-2 rounded font-bold text-white">
-          More
-        </h3> */}
-        <OutlineButton
-          label="More"
-          icon="chevron-right"
-          onClick={() => toPage(1)}
-        />
+        <h1 className="font-bold text-2xl mb-8">
+          {title || "Featured Product"}
+        </h1>
+
+        {category_id && (
+          <OutlineButton
+            label="More"
+            icon="chevron-right"
+            onClick={() => toPage(1)}
+          />
+        )}
       </div>
       <Swiper
         slidesPerView={mobileScreen ? 2 : 5}

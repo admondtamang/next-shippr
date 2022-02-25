@@ -24,36 +24,48 @@ export default function InfiniteProducts({ setTotalProduct, search_page }) {
 
   let { asPath, query } = useRouter();
   const observer = useRef();
+  let url_params = "";
+  Object.entries(query).map(([key, value], index) => {
+    url_params = `&${key}=${value}`;
+  });
 
-  const URL = PRODUCTS + "?perpage=15&page=" + page;
+  const URL = PRODUCTS + "?perpage=15&page=" + page + url_params;
+
   let totalProducts = 0;
 
   async function handleProducts() {
-    const res = await getProducts(URL);
-    totalProducts = res.headers["x-wp-totalpages"];
-    setTotalProduct && setTotalProduct(totalProducts);
-    // Check last page:  current page = last page then return null
-    if (totalProducts < page) {
-      setHasMore(false);
-      setEndOfContent(true);
-      return "Null";
-    }
+    try {
+      const res = await getProducts(URL);
+      totalProducts = res.headers["x-wp-totalpages"];
+      setTotalProduct && setTotalProduct(totalProducts);
+      // Check last page:  current page = last page then return null
+      if (totalProducts < page) {
+        setHasMore(false);
+        setEndOfContent(true);
+        return "Null";
+      }
+      console.log(asPath, query, URL);
+      // url get changed then set new data
+      if (asPath != queryLength) {
+        setProducts(res.data);
+        setQueryLength(asPath);
+        setPage(1);
+        return;
+      }
 
-    // url get changed then set new data
-    if (query != queryLength) {
-      setProducts(res.data);
+      setQueryLength(asPath);
+      if (hasMore) setProducts((pre) => [...new Set([...pre, ...res.data])]);
+      // else setProducts(res.data);
+    } catch (error) {
+      console.log("Error");
     }
-
-    setQueryLength(query);
-    if (hasMore) setProducts((pre) => [...new Set([...pre, ...res.data])]);
-    // else setProducts(res.data);
   }
 
   useEffect(async () => {
     if (!hasMore) return null;
 
     setIsLoading(true);
-    console.log(URL, "===", query, asPath);
+    // console.log(URL, "===", query, asPath);
     await handleProducts();
     setIsLoading(false);
   }, [URL, query]);

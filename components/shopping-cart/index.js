@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Button } from "..";
 import CheckoutStatus from "../../components/checkout-status";
 import CustomLink from "../CustomLink";
 import Item from "./item";
@@ -17,8 +18,8 @@ const ShoppingCart = () => {
   });
 
   return (
-    <section className="cart">
-      <div className="container bg-white p-8 rounded-lg">
+    <section className="cart  bg-white p-4 mt-8 rounded-lg container">
+      <div className="container ">
         <div className="cart__intro">
           <h3 className="cart__title">Shopping Cart</h3>
           <CheckoutStatus step="cart" />
@@ -58,7 +59,8 @@ const ShoppingCart = () => {
         </div>
 
         <div className="cart-actions">
-          <div className="cart__btn-back bg-primary-700 rounded-full p-4 pr-8 hover:bg-primary-300">
+          {/* <Button variant={"icon-button"} title="Continue Shopping" /> */}
+          <div className="cart__btn-back bg-primary-200 rounded-full p-4 pr-8 hover:bg-primary-300">
             <CustomLink href="/product/34">
               <i className="icon-left"></i> Continue Shopping
             </CustomLink>

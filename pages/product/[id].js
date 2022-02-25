@@ -9,24 +9,10 @@ import Content from "../../components/product-single/content";
 import ProductCarousel from "../../components/ProductCarousel";
 import { ScreenContext } from "../../contexts";
 import { useRouter } from "next/router";
-import { useFetch, useFetchQuery } from "../../hooks";
 import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
 import Related_ids from "./related_ids";
 import useSWR from "swr";
 import axiosInstance from "../../utils/axios";
-// import { server } from "../../utils/server";
-
-// export async function getServerSideProps({ query }) {
-//     const pid = query.pid;
-//     const res = await fetch(`${server}/api/product/${pid}`);
-//     const product = await res.json();
-
-//     return {
-//         props: {
-//             product,
-//         },
-//     };
-// }
 
 const Product = () => {
   const router = useRouter();
@@ -39,20 +25,13 @@ const Product = () => {
   const [showBlock, setShowBlock] = useState("description");
   const { mobileScreen } = useContext(ScreenContext);
 
-  // const {
-  //   response,
-  //   error,
-  //   status: { isIdle, isLoading, isRejected, isResolved },
-  // } = useFetch(URL, {}, URL);
-
-  // let product = response[0];
-
   const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
 
-  const { data, error, isValidating } = useSWR(URL, fetcher);
+  const { data, error } = useSWR(URL, fetcher);
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (error) return <Layout>failed to load</Layout>;
+  if (!data) return <Loading />;
+  if (data?.length === 0) return <Layout>No Product Found</Layout>;
 
   let product = data[0];
 
@@ -61,7 +40,7 @@ const Product = () => {
       <>
         <Breadcrumb currentPage={product.name} />
         <div
-          className={`flex h-2/6 container mb-8 gap-8 ${
+          className={`flex h-2/6 container mb-8 gap-8 rounded-lg p-4 bg-white ${
             mobileScreen && "flex-col"
           }`}
         >
@@ -69,12 +48,12 @@ const Product = () => {
           <Content product={product} />
         </div>
 
-        <div className="product-single__info container mb-8">
+        <div className="product-single__info container mb-8 bg-white p-4 rounded-md">
           <div className="product-single__info-btns">
             <button
               type="button"
               onClick={() => setShowBlock("description")}
-              className={`btn btn--rounded ${
+              className={`btn rounded-lg bg-white ${
                 showBlock === "description" ? "btn--active" : ""
               }`}
             >
@@ -83,7 +62,7 @@ const Product = () => {
             <button
               type="button"
               onClick={() => setShowBlock("reviews")}
-              className={`btn btn--rounded ${
+              className={`btn rounded-lg bg-white ${
                 showBlock === "reviews" ? "btn--active" : ""
               }`}
             >

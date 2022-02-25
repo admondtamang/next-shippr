@@ -26,11 +26,11 @@ const ProductsContent = () => {
             <h4>Sort by: </h4>
             <div className="select-wrapper">
               <select onChange={handleChange}>
-                <option value="date">Latest</option>
+                <option value="date&order=desc">Latest</option>
                 <option value="popularity">Popular</option>
                 <option value="rating">Rating</option>
-                <option value="price">Low to High</option>
-                <option value="price-desc">High to Low</option>
+                <option value="price&order=asc">Low to High</option>
+                <option value="price&order=desc">High to Low</option>
               </select>
             </div>
           </div>

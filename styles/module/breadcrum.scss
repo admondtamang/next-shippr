@@ -6,7 +6,8 @@
     display: flex;
     li {
       font-size: 13px;
-      color: #b2b2b2;
+      color: grey;
+      // color: #b2b2b2;
       &:not(:first-child) {
         margin-left: 10px;
         &:before {

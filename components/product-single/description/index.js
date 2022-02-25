@@ -1,16 +1,15 @@
-import Script from "next/script";
-import React, { useState } from "react";
+import React from "react";
 
 const Description = ({ show, product }) => {
-    const style = {
-        display: show ? "flex" : "none",
-    };
+  const style = {
+    display: show ? "flex" : "none",
+  };
 
-    return (
-        <section style={style} className="product-single__description">
-            <div dangerouslySetInnerHTML={{ __html: product.description }} />
-        </section>
-    );
+  return (
+    <section style={style} className="product-single__description p-8">
+      <div dangerouslySetInnerHTML={{ __html: product.description }} />
+    </section>
+  );
 };
 
 export default Description;
