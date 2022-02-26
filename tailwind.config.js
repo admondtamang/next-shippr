@@ -14,6 +14,16 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+        mono: ["Menlo", "Monaco", "Courier New", "monospace"],
+      },
+      outline: {
+        "no-chrome": "none",
+      },
+      transitionTimingFunction: {
+        "in-out-hard": "cubic-bezier(.77, 0, .175, 1)",
+      },
+      transitionDuration: {
+        400: "400ms",
       },
     },
   },

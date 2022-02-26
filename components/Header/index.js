@@ -56,11 +56,8 @@ export default function Header() {
             >
               <ul ref={ref}>
                 {categoryMenus.map(({ name, id, slug }) => (
-                  <CustomLink href="/">
-                    <li
-                      key={id}
-                      className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400"
-                    >
+                  <CustomLink href="/" key={id}>
+                    <li className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400">
                       <box-icon name="badge" />
                       <span dangerouslySetInnerHTML={{ __html: name }} />
                     </li>
