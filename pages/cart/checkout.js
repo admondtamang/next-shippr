@@ -99,7 +99,6 @@ const CheckoutPage = () => {
                         className="form__input form__input--sm"
                         name="last_name"
                         type="text"
-                        required
                         onChange={handleChange}
                         placeholder="Last name"
                       />
