@@ -5,8 +5,14 @@ import { useRouter } from "next/router";
 import axiosInstance from "../../utils/axios";
 import { Loading } from "../../components";
 import { getProducts } from "../../api/products";
+import Button from "../Button";
 
-export default function InfiniteProducts({ setTotalProduct, search_page }) {
+export default function InfiniteProducts({
+  setTotalProduct,
+  search_page,
+  title,
+  ...rest
+}) {
   // const { error, isLoading, status, response } = useFetchQuery(
   //   "search_products",
   //   PRODUCTS
@@ -21,6 +27,7 @@ export default function InfiniteProducts({ setTotalProduct, search_page }) {
   const [isLoading, setIsLoading] = useState(false);
   const [EndOfContent, setEndOfContent] = useState(false);
   const [queryLength, setQueryLength] = useState(null);
+  const [loadMore, setLoadMore] = useState(false);
 
   let { asPath, query } = useRouter();
   const observer = useRef();
@@ -68,7 +75,7 @@ export default function InfiniteProducts({ setTotalProduct, search_page }) {
     // console.log(URL, "===", query, asPath);
     await handleProducts();
     setIsLoading(false);
-  }, [URL, query]);
+  }, [URL, query, loadMore]);
 
   // Get the last products and rerender next page
   const lastProductRef = useCallback(
@@ -90,17 +97,19 @@ export default function InfiniteProducts({ setTotalProduct, search_page }) {
 
   return (
     // <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 ">
-    <>
+    <div className="container">
+      {title && <h1 className="font-bold text-2xl mb-4">{title}</h1>}
       <div
         className={
           search_page
             ? style_search_page
-            : "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-10"
+            : "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-10"
         }
+        {...rest}
       >
         {products.map((item, index) => {
           // Last elemet of array
-          if (products.length === index + 1)
+          if (products.length === index + 1 && loadMore)
             return (
               <ProductItem
                 item={item}
@@ -111,7 +120,21 @@ export default function InfiniteProducts({ setTotalProduct, search_page }) {
           else return <ProductItem item={item} key={index} />;
         })}
       </div>
+      <div className="flex-center">
+        {!loadMore && (
+          <Button
+            title="Load More"
+            variant={"outline"}
+            onClick={() => {
+              console.log("clickerd");
+              setPage((pre) => pre + 1);
+              setLoadMore(true);
+            }}
+          />
+        )}
+      </div>
+
       {isLoading && <Loading />}
-    </>
+    </div>
   );
 }

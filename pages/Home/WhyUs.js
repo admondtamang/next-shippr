@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WhyUs() {
   return (
-    <section className="section">
+    <section className="section bg-white py-12 rounded-md">
       <div className="container">
         <header className="section__intro">
           <h4>Why should you choose us?</h4>

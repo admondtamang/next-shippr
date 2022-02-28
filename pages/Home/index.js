@@ -4,6 +4,7 @@ import Carousel from "../../components/Carousel";
 import ProductCarousel from "../../components/ProductCarousel";
 import ProductItem from "../../components/ProductItem";
 import { ShowComponentInView } from "../../components";
+import InfiniteProducts from "../../components/InfiniteProducts";
 
 export default function Home() {
   return (
@@ -18,6 +19,9 @@ export default function Home() {
       <ProductCarousel />
       {/* <ProductItem /> */}
       <ShowComponentInView component={<Featured />} />
+      <ShowComponentInView
+        component={<InfiniteProducts title="More Products" showLoadMore />}
+      />
     </>
   );
 }

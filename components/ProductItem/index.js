@@ -37,7 +37,7 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
             layout="responsive"
             src={image}
             alt={slug}
-            width={230}
+            width={270}
             height={200}
             className="rounded"
           />
@@ -64,14 +64,14 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
     <CustomLink href={`/product/${slug}`}>
       <Card>
         <div
-          className="product-item w-56 rounded-md p-2 px-2 hover:shadow-lg "
+          className="product-item w-full rounded-md p-2 px-2 hover:shadow-lg "
           ref={lastProductRef}
         >
           <CustomImage
             layout="responsive"
             src={image}
             alt={slug}
-            width={mobileScreen ? 110 : 220}
+            width={mobileScreen ? 110 : 240}
             height={mobileScreen ? 150 : 250}
             className="rounded-md object-contain w-full"
           />

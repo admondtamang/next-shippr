@@ -58,30 +58,33 @@ const ShoppingCart = () => {
           {cartItems.length === 0 && <p>Nothing in the cart</p>}
         </div>
 
-        <div className="cart-actions">
-          {/* <Button variant={"icon-button"} title="Continue Shopping" /> */}
-          <div className="cart__btn-back bg-primary-200 rounded-full p-4 pr-8 hover:bg-primary-300">
-            <CustomLink href="/">
-              <i className="icon-left"></i> Continue Shopping
-            </CustomLink>
-          </div>
+        <div className="flex-center-between pt-20">
+          <Button
+            title="Back to shopping"
+            variant="icon-button"
+            boxIcon="shopping-bag"
+          />
           {/* <input
             type="text"
             placeholder="Promo Code"
             className="cart__promo-code"
           /> */}
 
-          <div className="cart-actions__items-wrapper">
-            <p className="cart-actions__total">
+          <div className="flex-center gap-4">
+            <p>
               Total cost <strong>Rs {priceTotal.toFixed(2)}</strong>
             </p>
             {priceTotal != 0 && (
-              <CustomLink
+              <Button
+                variant={"icon-button"}
                 href="/cart/checkout"
-                className="btn btn--rounded btn--yellow"
+                boxIcon="right-arrow-alt"
+                primary
+                title="checkout"
+                // className="btn btn--rounded btn--yellow"
               >
                 Checkout
-              </CustomLink>
+              </Button>
             )}
           </div>
         </div>
