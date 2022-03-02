@@ -12,7 +12,7 @@ export default function InfiniteProducts({
   search_page,
   fourColumns,
   title,
-  parameters,
+  parameters = {},
   className,
   ...rest
 }) {
@@ -43,6 +43,7 @@ export default function InfiniteProducts({
   });
 
   // get data from object and add to request url
+
   Object.entries(parameters).map(([key, value], index) => {
     url_params = `&${key}=${value}`;
   });
