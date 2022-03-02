@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { FreeMode, Navigation, Pagination, Thumbs } from "swiper";
 // import ImagePreview from "../../ImagePreview";
 import { useState, useCallback, useContext } from "react";
 import Carousel, { Modal, ModalGateway } from "react-images";
@@ -81,9 +81,13 @@ export default function Gallery({ images }) {
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
+        // pagination={{
+        //   type: "fraction",
+        // }}
         watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[FreeMode, Navigation, Pagination, Thumbs]}
         className="swiper-children"
+        navigation={true}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>

@@ -14,13 +14,13 @@ export default function Home() {
       <ProductCarousel />
       {/* <Featured /> */}
       <ShowComponentInView component={<ProductCarousel />} />
-      <Carousel height={100} />
+      <Carousel height={150} />
       <WhyUs />
       <ProductCarousel />
       {/* <ProductItem /> */}
       <ShowComponentInView component={<Featured />} />
       <ShowComponentInView
-        component={<InfiniteProducts title="More Products" showLoadMore />}
+        component={<InfiniteProducts title="Just For You" showLoadMore />}
       />
     </>
   );

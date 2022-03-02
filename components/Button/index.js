@@ -43,7 +43,7 @@ export default function Button({
       return (
         <button
           type="button"
-          className={`rounded-full uppercase text-xs font-bold px-4 p-3 mr-2 border-2`}
+          className={`rounded-full uppercase text-xs font-bold px-4 p-3 mr-2 border-2 bg-white`}
           {...rest}
         >
           {title}

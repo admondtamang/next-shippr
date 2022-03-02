@@ -9,6 +9,7 @@ module.exports = {
       "sulavshopping.com",
       "icms-image.slatic.net",
       "35.154.133.111",
+      "shippr.store",
     ],
   },
   scrollRestoration: true,

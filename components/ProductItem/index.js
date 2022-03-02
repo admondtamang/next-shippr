@@ -32,7 +32,7 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
   if (small_product || mobileScreen)
     return (
       <CustomLink href={`/product/${slug}`}>
-        <div className=" w-full rounded-md p-1 flex bg-primary-50 hover:bg-primary-50">
+        <div className=" w-full rounded-md p-1 flex bg-primary-50 hover:bg-primary-50 transition duration-200 ease-in-out transform hover:-translate-y-1 ">
           <CustomImage
             layout="responsive"
             src={image}
@@ -62,39 +62,39 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
     );
   return (
     <CustomLink href={`/product/${slug}`}>
-      <Card>
-        <div
-          className="product-item w-full rounded-md p-2 px-2 hover:shadow-lg "
-          ref={lastProductRef}
-        >
-          <CustomImage
-            layout="responsive"
-            src={image}
-            alt={slug}
-            width={mobileScreen ? 110 : 240}
-            height={mobileScreen ? 150 : 250}
-            className="rounded-md object-contain w-full"
-          />
-          <div className="product__description mt-2">
-            <Tooltip title={name}>
-              <h3 className="line-clamp font-bold text-bg-gray-700">{name}</h3>
-            </Tooltip>
-            <div className="product__price flex items-center mt-2">
-              <h4 className="font-bold text-primary-400">Rs. {price}</h4>
-              {on_sale && (
-                <span className="line-through text-sm text-primary-300 pl-2">
-                  Rs.{regular_price}
-                </span>
-              )}
-              {discount != 0 && (
-                <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">
-                  -{discount}%
-                </span>
-              )}
-            </div>
+      {/* <Card> */}
+      <div
+        className="product-item w-full rounded-md p-2 px-2 hover:shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 "
+        ref={lastProductRef}
+      >
+        <CustomImage
+          layout="responsive"
+          src={image}
+          alt={slug}
+          width={mobileScreen ? 110 : 240}
+          height={mobileScreen ? 150 : 250}
+          className="rounded-md object-contain w-full"
+        />
+        <div className="product__description mt-2">
+          <Tooltip title={name}>
+            <h3 className="line-clamp font-bold text-bg-gray-700">{name}</h3>
+          </Tooltip>
+          <div className="product__price flex items-center mt-2">
+            <h4 className="font-bold text-primary-400">Rs. {price}</h4>
+            {on_sale && (
+              <span className="line-through text-sm text-primary-300 pl-2">
+                Rs.{regular_price}
+              </span>
+            )}
+            {discount != 0 && (
+              <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">
+                -{discount}%
+              </span>
+            )}
           </div>
         </div>
-      </Card>
+      </div>
+      {/* </Card> */}
     </CustomLink>
   );
 }

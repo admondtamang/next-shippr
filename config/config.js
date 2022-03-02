@@ -1,6 +1,6 @@
 // const baseURL = "https://sulavshopping.com";
-// const baseURL = "https://shippr.store";
-const baseURL = "http://35.154.133.111:81/";
+const baseURL = "https://shippr.store";
+// const baseURL = "http://35.154.133.111:81/";
 // const baseURL = "http://shippr.local/";
 
 // const consumerKey = "ck_e4402ba377a6a237a2b01e5b3d9cd1492403112c";

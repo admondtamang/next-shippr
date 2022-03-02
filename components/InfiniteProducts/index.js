@@ -126,7 +126,6 @@ export default function InfiniteProducts({
             title="Load More"
             variant={"outline"}
             onClick={() => {
-              console.log("clickerd");
               setPage((pre) => pre + 1);
               setLoadMore(true);
             }}
