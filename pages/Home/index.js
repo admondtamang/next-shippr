@@ -24,6 +24,7 @@ export default function Home() {
           <InfiniteProducts
             title="Just For You"
             className="container"
+            parameters={{ orderby: "popularity" }}
             showLoadMore
           />
         }

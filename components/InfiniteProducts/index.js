@@ -12,6 +12,7 @@ export default function InfiniteProducts({
   search_page,
   fourColumns,
   title,
+  parameters,
   className,
   ...rest
 }) {
@@ -34,8 +35,15 @@ export default function InfiniteProducts({
 
   let { asPath, query } = useRouter();
   const observer = useRef();
+
   let url_params = "";
+  // get data from url and add to request url
   Object.entries(query).map(([key, value], index) => {
+    url_params = `&${key}=${value}`;
+  });
+
+  // get data from object and add to request url
+  Object.entries(parameters).map(([key, value], index) => {
     url_params = `&${key}=${value}`;
   });
 
