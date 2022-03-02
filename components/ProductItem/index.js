@@ -32,7 +32,7 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
   if (small_product || mobileScreen)
     return (
       <CustomLink href={`/product/${slug}`}>
-        <div className=" w-full rounded-md p-1 flex bg-primary-50 hover:bg-primary-50 transition duration-200 ease-in-out transform hover:-translate-y-1 ">
+        <div className=" w-full rounded-md p-1 flex bg-primary-50 hover:bg-white transition duration-200 ease-in-out transform hover:-translate-y-1 ">
           <CustomImage
             layout="responsive"
             src={image}
@@ -64,7 +64,7 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
     <CustomLink href={`/product/${slug}`}>
       {/* <Card> */}
       <div
-        className="product-item w-full rounded-md p-2 px-2 hover:shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 "
+        className="product-item w-full rounded-md p-2 px-2 bg-white hover:bg-white hover:shadow-lg  transition duration-200 ease-in-out transform hover:-translate-y-1 "
         ref={lastProductRef}
       >
         <CustomImage

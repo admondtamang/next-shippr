@@ -10,7 +10,9 @@ import Button from "../Button";
 export default function InfiniteProducts({
   setTotalProduct,
   search_page,
+  fourColumns,
   title,
+  className,
   ...rest
 }) {
   // const { error, isLoading, status, response } = useFetchQuery(
@@ -18,8 +20,9 @@ export default function InfiniteProducts({
   //   PRODUCTS
   // );
 
-  const style_search_page =
-    "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 ";
+  const style_search_page = `grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ${
+    fourColumns ? "xl:grid-cols-4" : "xl:grid-cols-5"
+  }  gap-2 `;
 
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -36,7 +39,12 @@ export default function InfiniteProducts({
     url_params = `&${key}=${value}`;
   });
 
-  const URL = PRODUCTS + "?perpage=15&page=" + page + url_params;
+  const URL =
+    PRODUCTS +
+    "?perpage=15&page=" +
+    page +
+    url_params +
+    (search_page ? "&search=" + search_page : "");
 
   let totalProducts = 0;
 
@@ -51,7 +59,7 @@ export default function InfiniteProducts({
         setEndOfContent(true);
         return "Null";
       }
-      console.log(asPath, query, URL);
+
       // url get changed then set new data
       if (asPath != queryLength) {
         setProducts(res.data);
@@ -96,14 +104,12 @@ export default function InfiniteProducts({
   );
 
   return (
-    // <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-2 ">
-    <div className="container">
+    <div className={className}>
       {title && <h1 className="font-bold text-2xl mb-4">{title}</h1>}
       <div
         className={
-          search_page
-            ? style_search_page
-            : "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-10"
+          style_search_page
+          //  "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-10"
         }
         {...rest}
       >
@@ -120,7 +126,7 @@ export default function InfiniteProducts({
           else return <ProductItem item={item} key={index} />;
         })}
       </div>
-      <div className="flex-center">
+      <div className="flex-center mt-5">
         {!loadMore && (
           <Button
             title="Load More"

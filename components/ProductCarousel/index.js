@@ -12,6 +12,7 @@ import ProductItem from "../ProductItem";
 import { ScreenContext } from "../../contexts";
 import OutlineButton from "../OutlineButton";
 import Router from "next/router";
+import { shuffleArray } from "../../utils/shuffleArray";
 
 export default function ProductCarousel({ products, title, category_id }) {
   const { mobileScreen } = useContext(ScreenContext);
@@ -46,7 +47,7 @@ export default function ProductCarousel({ products, title, category_id }) {
         freeMode={true}
         modules={[FreeMode]}
       >
-        {data.map((item) => (
+        {shuffleArray(data).map((item) => (
           <SwiperSlide key={item.id}>
             <ProductItem item={item} />
           </SwiperSlide>

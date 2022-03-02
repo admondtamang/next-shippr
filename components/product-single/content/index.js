@@ -5,9 +5,11 @@ import { ADD_TO_CART } from "../../../redux/cart/cartSlice";
 import { CustomLink, CustomImage } from "../..";
 import OutlineButton from "../../OutlineButton";
 import { shouldForwardProp } from "@mui/styled-engine";
+import { useRouter } from "next/router";
 
 const Content = ({ product }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   let discount;
 
@@ -20,7 +22,7 @@ const Content = ({ product }) => {
     sku,
     categories,
     description,
-    store,
+    brands,
     regular_price,
     images,
   } = product;
@@ -55,6 +57,12 @@ const Content = ({ product }) => {
   function handleQuantity(value) {
     if (value < 1) setQuantity(1);
     else setQuantity(value);
+  }
+  function handleBrandRoute(value) {
+    router.push({
+      pathname: "/search",
+      query: { searchTerm: value },
+    });
   }
 
   return (
@@ -128,27 +136,38 @@ const Content = ({ product }) => {
       )}
 
       {/* Store */}
-      {store?.vendor_shop_name && (
+      {typeof brands == "object" && brands[0]?.name && (
+        <div className="border-2 flex-wrap border-gray-200 p-4 rounded-lg flex-center-between  gap-4  md:flex-nowrap">
+          <h1 className="font-bold text-xl text-gray-800">{brands[0].name}</h1>
+          <OutlineButton
+            label={"Visit Store"}
+            icon="chevron-right"
+            onClick={() => handleBrandRoute(brands[0].name)}
+          />
+        </div>
+      )}
+
+      {/* {typeof brands == "object" && brands[0]?.name && (
         <div className="border-2 flex-wrap border-gray-200 p-6 rounded-lg flex  gap-4  md:flex-nowrap">
           <CustomImage
             src={
-              store?.vendor_shop_logo ||
+              brands[0]?.vendor_shop_logo ||
               "https://facebook.github.io/react/img/logo_small.png"
             }
             layout="responsive"
-            width={80}
-            height={80}
+            width={100}
+            height={100}
             className="object-cover rounded-lg md:h-full "
           />
           <div className="text-left">
             <h1 className="font-bold text-xl text-gray-800">
-              {store.vendor_shop_name}
+              {brands[0].name}
             </h1>
             <span className="text-gray-500">{store.vendor_address}</span>
           </div>
           <OutlineButton label={"Visit Store"} no_spacing />
         </div>
-      )}
+      )} */}
     </section>
   );
 };

@@ -37,9 +37,7 @@ const ProductsContent = () => {
         </form>
       </div>
 
-      {/* <List />
-       */}
-      <InfiniteProducts setTotalProduct={setTotalProduct} />
+      <InfiniteProducts setTotalProduct={setTotalProduct} fourColumns />
     </section>
   );
 };

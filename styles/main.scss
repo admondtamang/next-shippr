@@ -60,6 +60,17 @@
   }
 }
 
+.swiper-children .swiper-slide {
+  opacity: 0.5;
+}
+
+.swiper-children .swiper-slide-thumb-active {
+  opacity: 1;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 2px;
+}
+
 .btn {
   color: #000000;
   cursor: pointer;

@@ -20,7 +20,13 @@ export default function Home() {
       {/* <ProductItem /> */}
       <ShowComponentInView component={<Featured />} />
       <ShowComponentInView
-        component={<InfiniteProducts title="Just For You" showLoadMore />}
+        component={
+          <InfiniteProducts
+            title="Just For You"
+            className="container"
+            showLoadMore
+          />
+        }
       />
     </>
   );

@@ -52,7 +52,7 @@ const CheckoutPage = () => {
     };
     try {
       const result = await postPlaceOrder(values);
-      debugger;
+
       Router.push({
         pathname: "/cart/order-success",
         query: { pid: result.data.id },

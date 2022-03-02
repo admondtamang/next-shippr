@@ -12,7 +12,7 @@ export default function Search({ props }) {
           Reasult for &apos;
           <span className="text-primary-300">{query.searchTerm}</span>&apos;
         </h1>
-        <InfiniteProducts search_page />
+        <InfiniteProducts search_page={query.searchTerm} />
       </div>
     </Layout>
   );
