@@ -18,7 +18,9 @@ export default function OutlineButton({
         } ${className}`}
         {...rest}
       >
-        <span className="uppercase text-sm font-semibold">{label}</span>
+        <span className="uppercase text-sm font-semibold text-black">
+          {label}
+        </span>
         <box-icon
           name={icon ?? (isOpen ? "chevron-up" : "chevron-down")}
         ></box-icon>

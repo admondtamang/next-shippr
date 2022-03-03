@@ -34,8 +34,9 @@ export default function Header() {
                 src={logo}
                 placeholder="blurDataURL"
                 alt="logo"
-                height={80}
-                width={280}
+                height={200}
+                width={100}
+                className="object-contain "
               />
             </ToolTipWithButton>
           </CustomLink>

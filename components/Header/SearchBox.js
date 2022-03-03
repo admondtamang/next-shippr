@@ -31,6 +31,8 @@ export default function SearchBox() {
 
   function onSubmit(e) {
     e.preventDefault();
+    setVisible(false);
+
     Router.push({
       pathname: "/search",
       query: { searchTerm },

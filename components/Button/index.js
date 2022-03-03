@@ -49,6 +49,27 @@ export default function Button({
           {title}
         </button>
       );
+
+    case "submit":
+      return (
+        <button
+          type="submit"
+          className={`flex-center gap-2 font-bold  ${
+            primary
+              ? borderd
+                ? "border-2"
+                : "bg-primary-200"
+              : borderd
+              ? "border-2"
+              : "bg-gray-200"
+          } rounded-full p-3 pr-4  hover:bg-primary-300`}
+          {...rest}
+        >
+          {icon || <box-icon name={boxIcon || "left-arrow-alt"}></box-icon>}
+          <span>{title}</span>
+        </button>
+      );
+
     default:
       break;
   }

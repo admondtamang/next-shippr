@@ -30,7 +30,6 @@ const CheckoutPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (Object.keys.length <= 0) {
       alert("please fill shipping address");
       return;
@@ -59,138 +58,134 @@ const CheckoutPage = () => {
       });
       dispatch(EMPTY_CART());
     } catch (error) {
+      alert(error.data.message);
       console.log("error", error);
     }
   }
   return (
     <Layout>
       <section className="cart p-4 bg-white">
-        <form className="container">
-          <form className="form">
-            <div className="cart__intro">
-              <h3 className="cart__title">Shipping and Payment</h3>
-              <CheckoutStatus step="checkout" />
-            </div>
+        <form className="form container" onSubmit={handleSubmit}>
+          <div className="cart__intro">
+            <h3 className="cart__title">Shipping and Payment</h3>
+            <CheckoutStatus step="checkout" />
+          </div>
 
-            <div className="checkout-content">
-              <div className="checkout__col-6">
-                {/* <div className="checkout__btns">
+          <div className="checkout-content">
+            <div className="checkout__col-6">
+              {/* <div className="checkout__btns">
                                 <button className="btn btn--rounded btn--yellow">Log in</button>
                                 <button className="btn btn--rounded btn--border">Sign up</button>
                             </div> */}
 
-                <div className="block">
-                  <h3 className="block__title mb-4">Shipping information</h3>
+              <div className="block">
+                <h3 className="block__title mb-4">Shipping information</h3>
 
-                  <div className="form__input-row form__input-row--two">
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        type="text"
-                        placeholder="First name"
-                        name="first_name"
-                        required
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="form__col">
-                      <input
-                        required
-                        className="form__input form__input--sm"
-                        name="last_name"
-                        type="text"
-                        onChange={handleChange}
-                        placeholder="Last name"
-                      />
-                    </div>
+                <div className="form__input-row form__input-row--two">
+                  <div className="form__col">
+                    <input
+                      className="form__input form__input--sm"
+                      type="text"
+                      placeholder="First name"
+                      name="first_name"
+                      required
+                      onChange={handleChange}
+                    />
                   </div>
-                  <div className="form__input-row form__input-row--two">
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        type="text"
-                        required
-                        onChange={handleChange}
-                        placeholder="Email"
-                        name="email"
-                      />
-                    </div>
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        onChange={handleChange}
-                        required
-                        type="text"
-                        name="phone"
-                        placeholder="Phone number"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form__input-row ">
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        onChange={handleChange}
-                        required
-                        name="address_1"
-                        type="text"
-                        placeholder="Address"
-                      />
-                    </div>
+                  <div className="form__col">
+                    <input
+                      required
+                      className="form__input form__input--sm"
+                      name="last_name"
+                      type="text"
+                      onChange={handleChange}
+                      placeholder="Last name"
+                    />
                   </div>
                 </div>
-              </div>
+                <div className="form__input-row form__input-row--two">
+                  <div className="form__col">
+                    <input
+                      className="form__input form__input--sm"
+                      type="email"
+                      required
+                      onChange={handleChange}
+                      placeholder="Email"
+                      name="email"
+                    />
+                  </div>
+                  <div className="form__col">
+                    <input
+                      className="form__input form__input--sm"
+                      onChange={handleChange}
+                      required
+                      type="text"
+                      name="phone"
+                      placeholder="Phone number"
+                    />
+                  </div>
+                </div>
 
-              <div className="checkout__col-6">
-                <div className="block">
-                  <h3 className="block__title">Your cart</h3>
-                  <CheckoutItems />
-
-                  <div className="checkout-total">
-                    <p>Total cost</p>
-                    <h3>Rs {priceTotal + 100} with delivery</h3>
+                <div className="form__input-row ">
+                  <div className="form__col">
+                    <input
+                      className="form__input form__input--sm"
+                      onChange={handleChange}
+                      required
+                      name="address_1"
+                      type="text"
+                      placeholder="Address"
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex-center-between mt-20">
-              <span className="cart__btn-back">
-                {/* <CustomLink
+            <div className="checkout__col-6">
+              <div className="block">
+                <h3 className="block__title">Your cart</h3>
+                <CheckoutItems />
+
+                <div className="checkout-total">
+                  <p>Total cost</p>
+                  <h3>Rs {priceTotal + 100} with delivery</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-center-between mt-20">
+            <span className="cart__btn-back">
+              {/* <CustomLink
                   href="/cart"
                   className="border-2 border-gray-600 p-5 px-4 py-3 rounded-full"
                 >
                   <i className="icon-left"></i> Back
                 </CustomLink> */}
 
-                <Button
-                  title="Back"
-                  variant="icon-button"
-                  boxIcon="left-arrow-alt"
-                />
-              </span>
+              <Button
+                title="Back"
+                variant="icon-button"
+                boxIcon="left-arrow-alt"
+              />
+            </span>
 
-              <div className="flex gap-2">
-                <Button
-                  title="Continue shopping"
-                  borderd
-                  variant="icon-button"
-                  boxIcon="shopping-bag"
-                />
+            <div className="flex gap-2">
+              <Button
+                title="Continue shopping"
+                borderd
+                variant="icon-button"
+                boxIcon="shopping-bag"
+              />
 
-                <Button
-                  title="Proceed to checkout"
-                  variant="icon-button"
-                  href="/"
-                  type="submit"
-                  onClick={handleSubmit}
-                  primary
-                  boxIcon="right-arrow-alt"
-                />
-              </div>
+              <Button
+                title="Proceed to checkout"
+                variant="submit"
+                primary
+                boxIcon="right-arrow-alt"
+              />
             </div>
-          </form>
+          </div>
         </form>
       </section>
     </Layout>

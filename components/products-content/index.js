@@ -1,11 +1,10 @@
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import { useState } from "react";
 import InfiniteProducts from "../InfiniteProducts";
 // import List from './list';
 
-const ProductsContent = () => {
+const ProductsContent = ({ id }) => {
   const [totalProduct, setTotalProduct] = useState(0);
-  let { asPath } = useRouter();
 
   function handleChange(e) {
     e.preventDefault();
@@ -37,7 +36,11 @@ const ProductsContent = () => {
         </form>
       </div>
 
-      <InfiniteProducts setTotalProduct={setTotalProduct} fourColumns />
+      <InfiniteProducts
+        parameters={{ category: id || 1 }}
+        setTotalProduct={setTotalProduct}
+        fourColumns
+      />
     </section>
   );
 };
