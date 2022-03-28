@@ -6,148 +6,142 @@ import { CustomLink, CustomImage } from "../..";
 import OutlineButton from "../../OutlineButton";
 import { shouldForwardProp } from "@mui/styled-engine";
 import { useRouter } from "next/router";
+import { useNotifications } from "@mantine/notifications";
+import { ProductAttributes } from "./product-attributes";
 
 const Content = ({ product }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [quantity, setQuantity] = useState(1);
-  let discount;
+    const dispatch = useDispatch();
+    const notifications = useNotifications();
 
-  const {
-    id,
-    price,
-    variations,
-    name,
-    on_sale,
-    sku,
-    categories,
-    description,
-    brands,
-    regular_price,
-    images,
-  } = product;
-  // const pictures = images?.map((img, index) => {
-  //   return { uri: img.src, key: index };
-  // });
+    const router = useRouter();
+    const [quantity, setQuantity] = useState(1);
+    const [attributes, setAttributes] = useState({});
 
-  if (regular_price) {
-    discount = ((regular_price - price) / regular_price) * 100;
-    discount = discount.toFixed(0);
-  }
+    let discount;
 
-  // image validation choosing 1st image
-  const image =
-    images?.length <= 0 || !images
-      ? "https://facebook.github.io/react/img/logo_small.png"
-      : images[0].src;
+    const { id, price, variations, name, on_sale, sku, categories, description, brands, regular_price, images } = product;
+    // const pictures = images?.map((img, index) => {
+    //   return { uri: img.src, key: index };
+    // });
+    console.log("varitation", variations);
 
-  const addToCart = () => {
-    dispatch(
-      ADD_TO_CART({
-        id: id,
-        variation_id: 0,
-        quantity: quantity,
-        thumb: image,
-        price,
-        name,
-      })
-    );
-  };
+    if (regular_price) {
+        discount = ((regular_price - price) / regular_price) * 100;
+        discount = discount.toFixed(0);
+    }
 
-  function handleQuantity(value) {
-    if (value < 1) setQuantity(1);
-    else setQuantity(value);
-  }
-  function handleBrandRoute(value) {
-    router.push({
-      pathname: "/search",
-      query: { searchTerm: value },
-    });
-  }
+    // image validation choosing 1st image
+    const image = images?.length <= 0 || !images ? "https://facebook.github.io/react/img/logo_small.png" : images[0].src;
 
-  return (
-    <section className="container flex flex-col gap-8">
-      <div className="product-filter-item">
-        {regular_price && <div className="pill w-11">Sale</div>}
-        <h1 className="text-3xl font-light h2 mb-3">{name}</h1>
-        <p className="text-3xl">
-          Rs. {price}{" "}
-          {regular_price && (
-            <span className="text-2xl line-through ml-4 text-gray-400">
-              Rs. {regular_price}
-            </span>
-          )}
-        </p>
-      </div>
+    const addToCart = () => {
+        dispatch(
+            ADD_TO_CART({
+                id: id,
+                variation_id: 0,
+                quantity: quantity,
+                thumb: image,
+                price,
+                name,
+            })
+        );
+        notifications.showNotification({
+            title: "Success",
+            message: "Succesfully added to cart! 🤥",
+        });
+    };
 
-      {/* <div className="div">
+    function handleQuantity(value) {
+        if (value < 1) setQuantity(1);
+        else setQuantity(value);
+    }
+    function handleBrandRoute(value) {
+        router.push({
+            pathname: "/search",
+            query: { searchTerm: value },
+        });
+    }
+    function handleAttribute(attribute) {
+        setAttributes((prev) => ({
+            ...prev,
+            ...attribute,
+        }));
+    }
+
+    return (
+        <section className="container flex flex-col gap-8">
+            <div className="product-filter-item">
+                {regular_price && <div className="pill w-11">Sale</div>}
+                <h1 className="text-3xl font-light h2 mb-3">{name}</h1>
+                <p className="text-3xl">
+                    Rs. {price} {regular_price && <span className="text-2xl line-through ml-4 text-gray-400">Rs. {regular_price}</span>}
+                </p>
+            </div>
+
+            {/* <div className="div">
                 <h5 className="text-sm mb-2 text-gray-400">Size:</h5>
             </div> */}
 
-      <div className="product-filter-item ">
-        <h5 className="text-sm mb-2 text-gray-400">Quantity:</h5>
-        <div className="quantity-buttons">
-          <div className="quantity-button">
-            <button
-              type="button"
-              onClick={() => handleQuantity(quantity - 1)}
-              className="quantity-button__btn"
-            >
-              -
-            </button>
-            <span>{quantity}</span>
-            <button
-              type="button"
-              onClick={() => handleQuantity(quantity + 1)}
-              className="quantity-button__btn"
-            >
-              +
-            </button>
-          </div>
+            {/* {Object.keys(variations).map((variation) => {
+                console.log(variation);
+                return (
+                    <ProductAttributes
+                        key={`popup-attribute-key${variation}`}
+                        title={variation}
+                        attributes={variations[variation]}
+                        active={attributes[variation]}
+                        onClick={handleAttribute}
+                    />
+                );
+            })} */}
 
-          <button
-            type="submit"
-            onClick={() => addToCart()}
-            className="btn btn--rounded btn--yellow"
-          >
-            Add to cart
-          </button>
-          {/* <button type="button" onClick={toggleFav} className={`btn-heart ${isFavourite ? "btn-heart--active" : ""}`}> */}
-        </div>
-      </div>
+            <div className="product-filter-item ">
+                <h5 className="text-sm mb-2 text-gray-400">Quantity:</h5>
+                <div className="quantity-buttons">
+                    <div className="quantity-button">
+                        <button type="button" onClick={() => handleQuantity(quantity - 1)} className="quantity-button__btn">
+                            -
+                        </button>
+                        <span>{quantity}</span>
+                        <button type="button" onClick={() => handleQuantity(quantity + 1)} className="quantity-button__btn">
+                            +
+                        </button>
+                    </div>
 
-      {/* categories */}
-      {categories.length > 0 && (
-        <div className="product-filter-item ">
-          <h5 className="text-sm mb-2 text-gray-400">Categories:</h5>
-          {categories.map((cat, index) => (
-            <CustomLink to="/" key={index}>
-              <span dangerouslySetInnerHTML={{ __html: cat.name + ", " }} />
-            </CustomLink>
-          ))}
-        </div>
-      )}
-      {/* sku */}
-      {sku && (
-        <div className="product-filter-item ">
-          <h5 className="text-sm mb-2 text-gray-400">Sku: </h5>
-          <p className="font-normal">{sku}</p>
-        </div>
-      )}
+                    <button type="submit" onClick={() => addToCart()} className="btn btn--rounded btn--yellow">
+                        Add to cart
+                    </button>
+                    {/* <button type="button" onClick={toggleFav} className={`btn-heart ${isFavourite ? "btn-heart--active" : ""}`}> */}
+                </div>
+            </div>
 
-      {/* Store */}
-      {typeof brands == "object" && brands[0]?.name && (
-        <div className="border-2 flex-wrap border-gray-200 p-4 rounded-lg flex-center-between  gap-4  md:flex-nowrap">
-          <h1 className="font-bold text-xl text-gray-800">{brands[0].name}</h1>
-          <OutlineButton
-            label={"Visit Store"}
-            icon="chevron-right"
-            onClick={() => handleBrandRoute(brands[0].name)}
-          />
-        </div>
-      )}
+            {/* categories */}
+            {categories.length > 0 && (
+                <div className="product-filter-item ">
+                    <h5 className="text-sm mb-2 text-gray-400">Categories:</h5>
+                    {categories.map((cat, index) => (
+                        <CustomLink to="/" key={index}>
+                            <span dangerouslySetInnerHTML={{ __html: cat.name + ", " }} />
+                        </CustomLink>
+                    ))}
+                </div>
+            )}
+            {/* sku */}
+            {sku && (
+                <div className="product-filter-item ">
+                    <h5 className="text-sm mb-2 text-gray-400">Sku: </h5>
+                    <p className="font-normal">{sku}</p>
+                </div>
+            )}
 
-      {/* {typeof brands == "object" && brands[0]?.name && (
+            {/* Store */}
+            {typeof brands == "object" && brands[0]?.name && (
+                <div className="border-2 flex-wrap border-gray-200 p-4 rounded-lg flex-center-between  gap-4  md:flex-nowrap">
+                    <h1 className="font-bold text-xl text-gray-800">{brands[0].name}</h1>
+                    <OutlineButton label={"Visit Store"} icon="chevron-right" onClick={() => handleBrandRoute(brands[0].name)} />
+                </div>
+            )}
+
+            {/* {typeof brands == "object" && brands[0]?.name && (
         <div className="border-2 flex-wrap border-gray-200 p-6 rounded-lg flex  gap-4  md:flex-nowrap">
           <CustomImage
             src={
@@ -168,8 +162,8 @@ const Content = ({ product }) => {
           <OutlineButton label={"Visit Store"} no_spacing />
         </div>
       )} */}
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Content;
