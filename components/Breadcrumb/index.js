@@ -6,7 +6,7 @@ const Breadcrumb = ({ currentPage }) => {
       <div className="container">
         <ul className="breadcrumb-list">
           <li>
-            <CustomLink>
+            <CustomLink href="/">
               <i className="icon-home"></i>
             </CustomLink>
           </li>
