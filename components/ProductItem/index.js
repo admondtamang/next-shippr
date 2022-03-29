@@ -26,19 +26,10 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
   }
 
   // used for search box
-  if (small_product || mobileScreen)
+  if (small_product)
     return (
       <CustomLink href={`/product/${slug}`}>
-        <div className=" w-full rounded-md p-1 flex flex-col bg-primary-50 hover:bg-white transition duration-200 ease-in-out transform hover:-translate-y-1 ">
-          <CustomImage
-            layout="responsive"
-            src={image}
-            alt={slug}
-            width={mobileScreen ? 110 : 240}
-            height={mobileScreen ? 150 : 250}
-            className="rounded-md object-contain w-full"
-          />
-
+        <div className=" w-full rounded-md p-1 flex gap-2 bg-primary-50 hover:bg-white transition duration-200 ease-in-out transform hover:-translate-y-1 ">
           <div className="product__description mt-2">
             <h3 className="line-clamp">{name}</h3>
             <div className="product__price flex items-center mt-2">

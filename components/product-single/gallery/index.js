@@ -41,7 +41,7 @@ export default function Gallery({ images }) {
     setViewerIsOpen(false);
   };
   return (
-    <div className="flex w-6/12 h-full gap-8 flex-col">
+    <div className="flex w-full sm:w-6/12 h-full gap-8 flex-col">
       <ModalGateway>
         {viewerIsOpen && (
           <Modal onClose={closeLightbox}>
@@ -56,12 +56,7 @@ export default function Gallery({ images }) {
           </Modal>
         )}
       </ModalGateway>
-      <Swiper
-        thumbs={{ swiper: thumbsSwiper }}
-        spaceBetween={10}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="swiper-carousel"
-      >
+      <Swiper thumbs={{ swiper: thumbsSwiper }} spaceBetween={10} modules={[FreeMode, Navigation, Thumbs]} className="swiper-carousel">
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <CustomImage
