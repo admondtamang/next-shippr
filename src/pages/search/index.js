@@ -8,8 +8,8 @@ export default function Search({ props }) {
   return (
     <Layout>
       <div className="container">
-        <h1 className="font-bold text-lg">
-          Reasult for &apos;
+        <h1 className="font-bold text-lg py-3 ">
+          Result for &apos;
           <span className="text-primary-300">{query.searchTerm}</span>&apos;
         </h1>
         <InfiniteProducts search_page={query.searchTerm} />

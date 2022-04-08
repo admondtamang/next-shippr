@@ -16,13 +16,13 @@ export default function MobileBottomNavigation() {
     },
     {
       label: "Categories",
-      href: "/products",
+      href: "/category",
       icon: "category",
     },
     {
-      label: "Favorites",
-      href: "/",
-      icon: "star",
+      label: "Search",
+      href: "/search",
+      icon: "search",
     },
     {
       href: "/cart",

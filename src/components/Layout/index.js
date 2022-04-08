@@ -24,7 +24,7 @@ export default function Layout({ children, title = "Shippr Ecommerce", status })
 
       <main className={pathname !== "/" ? "main-page" : ""}>{status?.isLoading ? <Loading /> : children}</main>
 
-      <div className="relative">{mobileScreen ? <BottomNavigation /> : <Footer />}</div>
+      <div className="relative pb-20">{mobileScreen ? <BottomNavigation /> : <Footer />}</div>
     </div>
   );
 }

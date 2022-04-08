@@ -8,7 +8,8 @@ import { useContext, useState } from "react";
 import { postPlaceOrder } from "../../api/checkout";
 import Router from "next/router";
 import { EMPTY_CART } from "../../redux/cart/cartSlice";
-import { ScreenContext } from "contexts";
+import { ScreenContext } from "src/contexts";
+
 const CheckoutPage = () => {
   const [order, setOrder] = useState({});
   const cartItems = useSelector((state) => state.cart.cartItems);

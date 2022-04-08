@@ -9,9 +9,11 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/config/*": ["src/config/*"],
+      "@/contexts/*": ["src/contexts/*"],
       "@/assets/*": ["src/assets/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/pages/*": ["src/pages/*"]
+      "@/pages/*": ["src/pages/*"],
+      "@/utils/*": ["src/utils/*"]
     }
   },
   "exclude": ["dist", "node_modules", "build", ".vscode", ".next", "coverage", ".npm", ".yarn"],

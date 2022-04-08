@@ -1,6 +1,6 @@
-import { ScreenContext } from "contexts";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
+import { ScreenContext } from "src/contexts";
 import { Button } from "..";
 import CheckoutStatus from "../../components/checkout-status";
 import CustomLink from "../CustomLink";

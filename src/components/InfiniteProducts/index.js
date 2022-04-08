@@ -7,23 +7,13 @@ import { Loading } from "../../components";
 import { getProducts } from "../../api/products";
 import Button from "../Button";
 
-export default function InfiniteProducts({
-  setTotalProduct,
-  search_page,
-  fourColumns,
-  title,
-  parameters = {},
-  className,
-  ...rest
-}) {
+export default function InfiniteProducts({ setTotalProduct, search_page, fourColumns, title, parameters = {}, className, ...rest }) {
   // const { error, isLoading, status, response } = useFetchQuery(
   //   "search_products",
   //   PRODUCTS
   // );
 
-  const style_search_page = `grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ${
-    fourColumns ? "xl:grid-cols-4" : "xl:grid-cols-5"
-  }  gap-2 `;
+  const style_search_page = `grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ${fourColumns ? "xl:grid-cols-4" : "xl:grid-cols-5"}  gap-2 `;
 
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -48,12 +38,7 @@ export default function InfiniteProducts({
     url_params = `&${key}=${value}`;
   });
 
-  const URL =
-    PRODUCTS +
-    "?perpage=15&page=" +
-    page +
-    url_params +
-    (search_page ? "&search=" + search_page : "");
+  const URL = PRODUCTS + "?perpage=15&page=" + page + url_params + (search_page ? "&search=" + search_page : "");
 
   let totalProducts = 0;
 
@@ -86,6 +71,7 @@ export default function InfiniteProducts({
   }
 
   useEffect(async () => {
+    console.log(URL);
     if (!hasMore) return null;
 
     setIsLoading(true);
@@ -124,14 +110,7 @@ export default function InfiniteProducts({
       >
         {products.map((item, index) => {
           // Last elemet of array
-          if (products.length === index + 1 && loadMore)
-            return (
-              <ProductItem
-                item={item}
-                key={index}
-                lastProductRef={lastProductRef}
-              />
-            );
+          if (products.length === index + 1 && loadMore) return <ProductItem item={item} key={index} lastProductRef={lastProductRef} />;
           else return <ProductItem item={item} key={index} />;
         })}
       </div>

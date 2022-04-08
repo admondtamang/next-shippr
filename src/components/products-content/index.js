@@ -36,11 +36,7 @@ const ProductsContent = ({ id }) => {
         </form>
       </div>
 
-      <InfiniteProducts
-        parameters={{ category: id || 1 }}
-        setTotalProduct={setTotalProduct}
-        fourColumns
-      />
+      <InfiniteProducts parameters={id ? { category: id } : {}} setTotalProduct={setTotalProduct} fourColumns />
     </section>
   );
 };

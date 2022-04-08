@@ -44,7 +44,7 @@ export default function Header() {
             <div className={`absolute mt-4 w-80 bg-white rounded-lg p-2 border-2 border-grey-900 ${isOpen ? "visible" : "invisible"}`}>
               <ul ref={ref}>
                 {categoryMenus.map(({ name, id, slug }) => (
-                  <CustomLink href="/" key={id}>
+                  <CustomLink href={`/category/${id}`} key={id}>
                     <li className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400">
                       <box-icon name="badge" />
                       <span dangerouslySetInnerHTML={{ __html: name }} />
