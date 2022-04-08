@@ -1,7 +1,7 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
-  content: ["./pages/**/*.{html,js}", "./components/**/*.{html,js}"],
+  content: ["./src/pages/**/*.{html,js}", "./src/components/**/*.{html,js}"],
   theme: {
     colors: {
       primary: colors.cyan,

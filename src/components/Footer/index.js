@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../../public/favicon.ico";
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -10,10 +9,7 @@ export default function Footer() {
               {/* <Logo /> */}
               <span>E</span>-Shop
             </h6>
-            <p>
-              House My Brand designs clothing for the young, the old & everyone
-              in between – but most importantly, for the fashionable
-            </p>
+            <p>House My Brand designs clothing for the young, the old & everyone in between – but most importantly, for the fashionable</p>
             <ul className="site-footer__social-networks">
               <li>
                 <a href="#">

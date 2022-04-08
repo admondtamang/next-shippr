@@ -1,5 +1,5 @@
 import axios from "axios";
-import { consumerKey, consumerSecret, baseURL } from "../config/config";
+import { consumerKey, consumerSecret, baseURL } from "@/config/config";
 
 const axiosInstance = axios.create({
   baseURL,
