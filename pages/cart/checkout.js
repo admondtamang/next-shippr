@@ -4,10 +4,11 @@ import CheckoutStatus from "../../components/checkout-status";
 import CheckoutItems from "../../components/checkout/items";
 import CustomLink from "../../components/CustomLink";
 import Button from "../../components/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postPlaceOrder } from "../../api/checkout";
 import Router from "next/router";
 import { EMPTY_CART } from "../../redux/cart/cartSlice";
+import { ScreenContext } from "contexts";
 const CheckoutPage = () => {
   const [order, setOrder] = useState({});
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -20,6 +21,8 @@ const CheckoutPage = () => {
 
     return totalPrice;
   });
+  const { mobileScreen } = useContext(ScreenContext);
+
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -163,27 +166,12 @@ const CheckoutPage = () => {
                   <i className="icon-left"></i> Back
                 </CustomLink> */}
 
-              <Button
-                title="Back"
-                variant="icon-button"
-                boxIcon="left-arrow-alt"
-              />
+              <Button title="Back" variant="icon-button" boxIcon="left-arrow-alt" />
             </span>
 
             <div className="flex gap-2">
-              <Button
-                title="Continue shopping"
-                borderd
-                variant="icon-button"
-                boxIcon="shopping-bag"
-              />
-
-              <Button
-                title="Proceed to checkout"
-                variant="submit"
-                primary
-                boxIcon="right-arrow-alt"
-              />
+              {!mobileScreen && <Button title="Continue shopping" borderd variant="icon-button" boxIcon="shopping-bag" />}
+              <Button title="Proceed to checkout" variant="submit" primary boxIcon="right-arrow-alt" />
             </div>
           </div>
         </form>

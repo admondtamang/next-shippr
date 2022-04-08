@@ -1,3 +1,5 @@
+import { ScreenContext } from "contexts";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "..";
 import CheckoutStatus from "../../components/checkout-status";
@@ -6,6 +8,7 @@ import Item from "./item";
 
 const ShoppingCart = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const { mobileScreen } = useContext(ScreenContext);
 
   const priceTotal = useSelector((state) => {
     const cartItems = state.cart?.cartItems;
@@ -58,12 +61,8 @@ const ShoppingCart = () => {
           {cartItems.length === 0 && <p>Nothing in the cart</p>}
         </div>
 
-        <div className="flex-center-between pt-20">
-          <Button
-            title="Back to shopping"
-            variant="icon-button"
-            boxIcon="shopping-bag"
-          />
+        <div className="flex-center-between pt-5 lg:pt-20">
+          {!mobileScreen && <Button title="Back to shopping" variant="icon-button" boxIcon="shopping-bag" />}
           {/* <input
             type="text"
             placeholder="Promo Code"

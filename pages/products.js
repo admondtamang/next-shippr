@@ -6,15 +6,17 @@ import ProductsContent from "../components/products-content";
 import BackToTop from "../components/backtoTop";
 const Products = () => (
   <Layout>
-    <Breadcrumb currentPage="Products" />
-    <section className="products-page">
-      <div className="container">
-        <ProductsFilter />
-        <ProductsContent />
-      </div>
-    </section>
-    {/* <BackToTop /> */}
-    {/* <Footer /> */}
+    <div className="mt-12 lg:mt-0">
+      <Breadcrumb currentPage="Products" />
+      <section className="products-page">
+        <div className="container">
+          <ProductsFilter />
+          <ProductsContent />
+        </div>
+      </section>
+      {/* <BackToTop /> */}
+      {/* <Footer /> */}
+    </div>
   </Layout>
 );
 

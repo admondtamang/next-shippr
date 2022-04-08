@@ -1,5 +1,5 @@
 // const baseURL = "https://sulavshopping.com";
-const baseURL = "https://dev.shippr.store";
+const baseURL = "https://shippr.store";
 // const baseURL = "http://35.154.133.111:81/";
 // const baseURL = "http://shippr.local/";
 
@@ -7,8 +7,8 @@ const baseURL = "https://dev.shippr.store";
 // const consumerSecret = "cs_6db346bff344e4548d3a28810e850b923e781b05";
 
 // sulav shopping
-const consumerKey = "ck_d5afcef8dd078d78f83c6da8d8d9a36cb1a1a729";
-const consumerSecret = "cs_b792b15b8306ffadcf972036e98340bc156502d0";
+const consumerKey = "ck_94060644914a7b0808a8d60395244c7cecd3df10";
+const consumerSecret = "cs_bcb19b748b936bce57d6a2330c6764d4c5fcb41c";
 
 // const consumerKey = "ck_059ad2ca73a1f14e6a8bd6f4f7439f654fc7781c";
 // const consumerSecret = "cs_e1c2f896832671783383d310bfb8fd49ab7b8c2f";

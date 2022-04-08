@@ -7,32 +7,15 @@
     "module": "es2015",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/assets/*": ["assets/*"],
+      "@/styles/*": ["styles/*"],
+      "@/pages/*": ["pages/*"]
     }
   },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "build",
-    ".vscode",
-    ".next",
-    "coverage",
-    ".npm",
-    ".yarn"
-  ],
+  "exclude": ["dist", "node_modules", "build", ".vscode", ".next", "coverage", ".npm", ".yarn"],
   "typeAcquisition": {
     "enable": true,
-    "include": [
-      "react",
-      "react-dom"
-    ]
+    "include": ["react", "react-dom"]
   }
 }

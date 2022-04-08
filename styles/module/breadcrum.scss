@@ -1,7 +1,4 @@
 .breadcrumb {
-  @include breakpoint(phone) {
-    padding: 29px 0 35px 0;
-  }
   .breadcrumb-list {
     display: flex;
     li {

@@ -2,7 +2,7 @@ import CustomLink from "../CustomLink";
 
 const Breadcrumb = ({ currentPage }) => {
   return (
-    <section className="breadcrumb">
+    <section className="breadcrumb py-4 ">
       <div className="container">
         <ul className="breadcrumb-list">
           <li>

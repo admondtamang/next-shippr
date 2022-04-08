@@ -35,7 +35,7 @@ export default function MobileBottomNavigation() {
     Router.push(href || "");
   }
   return (
-    <Box className="flex-center fixed z-50 bg-white w-full bottom-0">
+    <Box className="flex-center fixed z-50 bg-white w-full bottom-0  ">
       <BottomNavigation
         showLabels
         value={value}
@@ -44,12 +44,7 @@ export default function MobileBottomNavigation() {
         }}
       >
         {navigation_data.map(({ label, icon, href }, index) => (
-          <BottomNavigationAction
-            key={index}
-            onClick={() => toPage(href)}
-            label={label}
-            icon={<Icon name={icon} />}
-          />
+          <BottomNavigationAction key={index} onClick={() => toPage(href)} label={label} icon={<Icon name={icon} />} />
         ))}
       </BottomNavigation>
     </Box>

@@ -3,7 +3,7 @@ import { useContext, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { CustomIconButton } from "..";
 import CustomLink from "../CustomLink";
-import logo from "./logo.png";
+import logo from "@/assets/logo.png";
 import ToolTipWithButton from "../ToolTipWithButton";
 import { Tooltip } from "@mui/material";
 import OutlineButton from "../OutlineButton";

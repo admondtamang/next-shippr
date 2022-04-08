@@ -41,7 +41,7 @@ export default function Gallery({ images }) {
     setViewerIsOpen(false);
   };
   return (
-    <div className="flex w-full sm:w-6/12 h-full gap-8 flex-col">
+    <div className="flex w-full sm:w-6/12 gap-4 lg:gap-8 flex-col">
       <ModalGateway>
         {viewerIsOpen && (
           <Modal onClose={closeLightbox}>
@@ -66,7 +66,7 @@ export default function Gallery({ images }) {
               width={mobileScreen ? 200 : 200}
               height={mobileScreen ? 300 : 150}
               onClick={(e) => openLightbox(e, { index })}
-              className="rounded object-contain shadow w-full cursor-pointer"
+              className="rounded object-contain shadow w-full cursor-pointer hover:bg-sky-700 "
             />
           </SwiperSlide>
         ))}

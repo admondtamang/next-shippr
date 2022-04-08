@@ -10,6 +10,7 @@ module.exports = {
       "icms-image.slatic.net",
       "35.154.133.111",
       "shippr.store",
+      "shippr-bucket.s3.ap-south-1.amazonaws.com",
     ],
   },
   scrollRestoration: true,
