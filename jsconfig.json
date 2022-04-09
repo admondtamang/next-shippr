@@ -13,7 +13,8 @@
       "@/assets/*": ["src/assets/*"],
       "@/styles/*": ["src/styles/*"],
       "@/pages/*": ["src/pages/*"],
-      "@/utils/*": ["src/utils/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/hooks/*": ["src/hooks/*"]
     }
   },
   "exclude": ["dist", "node_modules", "build", ".vscode", ".next", "coverage", ".npm", ".yarn"],

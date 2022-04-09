@@ -14,16 +14,16 @@ const ProductsContent = ({ id }) => {
     });
   }
   return (
-    <section className="products-content">
-      <div className="products-content__intro">
+    <section className="products-content mb-4">
+      <div className="products-content__intro flex-center-between">
         <h2>
           All Products <span>({totalProduct})</span>
         </h2>
 
-        <form className={`products-content__filter`}>
-          <div className="products__filter__select">
+        <form>
+          <div className={`flex-center-between`}>
             <h4>Sort by: </h4>
-            <div className="select-wrapper">
+            <div className="select-wrapper ml-2">
               <select onChange={handleChange}>
                 <option value="date&order=desc">Latest</option>
                 <option value="popularity">Popular</option>

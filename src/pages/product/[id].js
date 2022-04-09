@@ -9,7 +9,7 @@ import Content from "../../components/product-single/content";
 import ProductCarousel from "../../components/ProductCarousel";
 import { ScreenContext } from "../../contexts";
 import { useRouter, withRouter } from "next/router";
-import { PRODUCTS, SINGLE_PRODUCTS } from "../../utils/constants";
+import { PRODUCTS, SINGLE_PRODUCTS } from "@/utils/constants";
 import Related_ids from "./related_ids";
 import useSWR from "swr";
 import axiosInstance from "../../utils/axios";

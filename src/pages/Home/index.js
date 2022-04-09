@@ -14,20 +14,13 @@ export default function Home() {
       <ProductCarousel />
       {/* <Featured /> */}
       <ShowComponentInView component={<ProductCarousel />} />
-      <Carousel height={150} />
+      <Carousel />
       <WhyUs />
       <ProductCarousel />
       {/* <ProductItem /> */}
       <ShowComponentInView component={<Featured />} />
       <ShowComponentInView
-        component={
-          <InfiniteProducts
-            title="Just For You"
-            className="container"
-            parameters={{ orderby: "popularity" }}
-            showLoadMore
-          />
-        }
+        component={<InfiniteProducts title="Just For You" className="container" parameters={{ orderby: "popularity" }} showLoadMore />}
       />
     </>
   );

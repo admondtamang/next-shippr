@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ScreenContext } from "src/contexts";
 import { Button } from "..";
 import CheckoutStatus from "../../components/checkout-status";
-import CustomLink from "../CustomLink";
+import CustomLink from "@/components/CustomLink";
 import Item from "./item";
 
 const ShoppingCart = () => {

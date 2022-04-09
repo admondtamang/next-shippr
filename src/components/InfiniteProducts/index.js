@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import ProductItem from "../ProductItem";
-import { PRODUCTS, url_asPath } from "../../utils/constants";
+import ProductItem from "@/components/ProductItem";
+import { PRODUCTS, url_asPath } from "@/utils/constants";
 import { useRouter } from "next/router";
 import axiosInstance from "../../utils/axios";
 import { Loading } from "../../components";

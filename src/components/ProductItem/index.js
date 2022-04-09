@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { CustomImage } from "..";
 import Products from "../../json/json-products";
-import CustomLink from "../CustomLink";
+import CustomLink from "@/components/CustomLink";
 import ToolTipWithButton from "../ToolTipWithButton";
 import { ScreenContext } from "../../contexts";
 import { Card, Tooltip } from "@mui/material";

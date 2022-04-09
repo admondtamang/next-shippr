@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { Loading } from "../../components";
 import ProductCarousel from "../../components/ProductCarousel";
 import axiosInstance from "../../utils/axios";
-import { RELATED_IDS } from "../../utils/constants";
+import { RELATED_IDS } from "@/utils/constants";
 
 export default function Related_ids({ ids }) {
   const URL = RELATED_IDS + ids;
