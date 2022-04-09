@@ -15,7 +15,7 @@ const ProductsContent = ({ id }) => {
   }
   return (
     <section className="products-content mb-4">
-      <div className="products-content__intro flex-center-between">
+      <div className="products-content__intro flex-center-between pb-6 ">
         <h2>
           All Products <span>({totalProduct})</span>
         </h2>

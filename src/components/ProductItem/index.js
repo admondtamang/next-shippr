@@ -8,10 +8,10 @@ import ToolTipWithButton from "../ToolTipWithButton";
 import { ScreenContext } from "../../contexts";
 import { Card, Tooltip } from "@mui/material";
 
-export default function ProductItem({ item, small_product, lastProductRef }) {
+export default function ProductItem({ item, small_product, lastProductRef, discount_label_top }) {
   const { mobileScreen } = useContext(ScreenContext);
   var discount = 2;
-  const { id, name, price, regular_price = 322, images, on_sale, slug } = item;
+  const { id, name, price, regular_price, images, on_sale, slug } = item;
 
   // Calculate discount price
   if (regular_price) {
@@ -33,7 +33,7 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
           <div className="product__description mt-2">
             <h3 className="line-clamp">{name}</h3>
             <div className="product__price flex items-center mt-2">
-              <h4 className="font-bold text-primary-400">Rs. {price}</h4>
+              <h4 className="font-bold text-primary-400">Rs. {int(price)}</h4>
               {on_sale && <span className="line-through text-sm text-primary-300 pl-2">Rs.{regular_price}</span>}
               {discount != 0 && <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">-{discount}%</span>}
             </div>
@@ -63,7 +63,15 @@ export default function ProductItem({ item, small_product, lastProductRef }) {
           <div className="product__price flex items-center mt-2">
             <h4 className="font-bold text-primary-400">Rs. {price}</h4>
             {on_sale && <span className="line-through text-sm text-primary-300 pl-2">Rs.{regular_price}</span>}
-            {discount != 0 && <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">-{discount}%</span>}
+            {discount != 0 && (
+              <span
+                className={`${
+                  discount_label_top ? "absolute top-2 right-2" : ""
+                } rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 `}
+              >
+                -{discount}%
+              </span>
+            )}
           </div>
         </div>
       </div>

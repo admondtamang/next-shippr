@@ -1,5 +1,5 @@
 // const baseURL = "https://sulavshopping.com";
-const baseURL = "https://shippr.store";
+const baseURL = "https://api.shippr.store";
 // const baseURL = "http://35.154.133.111:81/";
 // const baseURL = "http://shippr.local/";
 

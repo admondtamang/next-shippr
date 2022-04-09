@@ -12,7 +12,7 @@ import { ScreenContext } from "../../contexts";
 import SearchBox from "./SearchBox";
 import { Menu, Skeleton } from "antd";
 import { useClickOutside } from "../../hooks";
-import categoryMenus from "../../utils/data/categories";
+import categoryMenus from "../../json/json-category";
 
 export default function Header() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -43,14 +43,16 @@ export default function Header() {
             {/* category menu */}
             <div className={`absolute mt-4 w-80 bg-white rounded-lg p-2 border-2 border-grey-900 ${isOpen ? "visible" : "invisible"}`}>
               <ul ref={ref}>
-                {categoryMenus.map(({ name, id, slug }) => (
-                  <CustomLink href={`/category/${id}`} key={id}>
-                    <li className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400">
-                      <box-icon name="badge" />
-                      <span dangerouslySetInnerHTML={{ __html: name }} />
-                    </li>
-                  </CustomLink>
-                ))}
+                {categoryMenus.map(({ name, id, slug }) => {
+                  return (
+                    <CustomLink href={`/category/${id}`} key={id}>
+                      <li className="flex  gap-2 p-2 rounded-md border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400">
+                        <box-icon name="badge" />
+                        <span dangerouslySetInnerHTML={{ __html: name }} />
+                      </li>
+                    </CustomLink>
+                  );
+                })}
               </ul>
             </div>
           </div>

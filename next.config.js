@@ -14,4 +14,7 @@ module.exports = {
     ],
   },
   scrollRestoration: true,
+  experimental: {
+    outputStandalone: true,
+  },
 };

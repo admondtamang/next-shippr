@@ -1,4 +1,9 @@
 import React from "react";
+import logo from "@/assets/logo.png";
+import { CustomLink } from "..";
+import ToolTipWithButton from "../ToolTipWithButton";
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -7,7 +12,9 @@ export default function Footer() {
           <div className="site-footer__description">
             <h6>
               {/* <Logo /> */}
-              <span>E</span>-Shop
+              <CustomLink href="/">
+                <Image src={logo} placeholder="blurDataURL" alt="logo" height={80} width={120} className="object-contain " />
+              </CustomLink>
             </h6>
             <p>House My Brand designs clothing for the young, the old & everyone in between – but most importantly, for the fashionable</p>
             <ul className="site-footer__social-networks">

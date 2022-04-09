@@ -64,7 +64,7 @@ export default function Gallery({ images }) {
               src={image.src}
               alt={image.src}
               width={mobileScreen ? 200 : 200}
-              height={mobileScreen ? 300 : 150}
+              height={mobileScreen ? 170 : 150}
               onClick={(e) => openLightbox(e, { index })}
               className="rounded object-contain shadow w-full cursor-pointer hover:bg-sky-700 "
             />
@@ -89,9 +89,9 @@ export default function Gallery({ images }) {
             <CustomImage
               layout="responsive"
               src={image.src}
-              alt=""
-              width={mobileScreen ? 200 : 200}
-              height={mobileScreen ? 250 : 150}
+              alt={image.name}
+              width={mobileScreen ? 200 : 220}
+              height={mobileScreen ? 250 : 120}
               className="swiper-lazy object-contain rounded shadow-lg border-2 bg-bg-white cursor-pointer"
             />
           </SwiperSlide>

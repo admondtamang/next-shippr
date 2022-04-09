@@ -1,14 +1,14 @@
 import Head from "next/head";
-import Header from "./Header";
+import Header from "../Header";
 import { useRouter } from "next/router";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import BottomNavigation from "../Mobile/MobileBottomNavigation";
 import { ScreenContext } from "../../contexts";
 import { useContext } from "react";
 import { Loading } from "..";
 import { NextSeo } from "next-seo";
 
-export default function Layout({ children, title = "Shippr Ecommerce", status }) {
+export default function Layout({ children, title = "Shippr Ecommerce", status, loader }) {
   const router = useRouter();
   const pathname = router.pathname;
   const { mobileScreen } = useContext(ScreenContext);
@@ -42,7 +42,7 @@ export default function Layout({ children, title = "Shippr Ecommerce", status })
 
       <Header />
 
-      <main className={pathname !== "/" ? "main-page" : ""}>{status?.isLoading ? <Loading /> : children}</main>
+      <main className={pathname !== "/" ? "main-page" : ""}>{status?.isLoading ? loader || <Loading /> : children}</main>
 
       <div className="relative pb-20">{mobileScreen ? <BottomNavigation /> : <Footer />}</div>
     </div>
