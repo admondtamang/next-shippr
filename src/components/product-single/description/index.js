@@ -2,7 +2,7 @@ import React from "react";
 
 const Description = ({ show, product }) => {
   const style = {
-    display: show ? "flex" : "none",
+    display: show ? "" : "none",
   };
 
   return (

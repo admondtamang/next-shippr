@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <div className="w-full sticky top-0 bg-white fixed-top ">
       <header
-        className={`container py-4 md:py-2 xl:py-0 flex-center gap-4 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full  bg-white z-auto`}
+        className={`py-4 md:py-2 xl:py-0 flex-center gap-4 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full  bg-white z-auto`}
       >
         {/* category */}
         <div className="flex-center">
@@ -74,7 +74,7 @@ export default function Header() {
                   <CustomIconButton name="cart" tooltip="Cart" />
                 </CustomLink>
 
-                <span className="absolute top-6 left-5 bg-primary-400 text-secondary-800 text-xs font-semibold px-2 py-0.5 rounded-full dark:bg-yellow-200 dark:text-yellow-900">
+                <span className="absolute top-7 left-5 bg-primary-400 text-secondary-800 text-xs font-semibold px-2 py-0.5 rounded-full dark:bg-yellow-200 dark:text-yellow-900">
                   {cartItems?.length}
                 </span>
                 {/* <p className="absolute top-6 right-3 p-1 px-3 text-xs rounded-full bg-primary-400 ">{cartItems.length}</p> */}
@@ -86,7 +86,6 @@ export default function Header() {
             </>
 
             {/* Login */}
-
             <OutlineButton label={"Login"} />
           </div>
         )}

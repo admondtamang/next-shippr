@@ -13,6 +13,9 @@ module.exports = {
       "shippr-bucket.s3.ap-south-1.amazonaws.com",
     ],
   },
+  api: {
+    externalResolver: true,
+  },
   scrollRestoration: true,
   experimental: {
     outputStandalone: true,

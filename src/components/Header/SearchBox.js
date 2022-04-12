@@ -24,6 +24,9 @@ export default function SearchBox() {
     status: { isLoading, isResolved },
   } = useFetch(searchTerm ? url : null);
 
+  if (error) {
+    console.log(error);
+  }
   function handleChange(e) {
     setVisible(true);
     setSearchTerm(e.target.value);

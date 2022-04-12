@@ -33,7 +33,7 @@ export default function ProductItem({ item, small_product, lastProductRef, disco
           <div className="product__description mt-2">
             <h3 className="line-clamp">{name}</h3>
             <div className="product__price flex items-center mt-2">
-              <h4 className="font-bold text-primary-400">Rs. {int(price)}</h4>
+              <h4 className="font-bold text-primary-400">Rs. {price}</h4>
               {on_sale && <span className="line-through text-sm text-primary-300 pl-2">Rs.{regular_price}</span>}
               {discount != 0 && <span className="rounded text-xs font-normal ml-2 text-white bg-secondary-200 p-1 ">-{discount}%</span>}
             </div>
