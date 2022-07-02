@@ -1,12 +1,12 @@
-import React from "react";
-import { IconButton, Tooltip } from "@mui/material";
-import Icon from "@/components/Icon";
+import React from 'react';
+import { IconButton, Tooltip } from '@mui/material';
+import Icon from '@/components/Icon';
 
 export default function CustomIconButton({ name, tooltip, ...rest }) {
   return (
-    <Tooltip title={tooltip || ""}>
+    <Tooltip title={tooltip || ''}>
       <IconButton>
-        <div className="flex-center circular-button">
+        <div className="flex-center ">
           <Icon name={name} {...rest} />
         </div>
       </IconButton>

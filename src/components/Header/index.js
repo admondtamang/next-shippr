@@ -1,18 +1,18 @@
-import Image from "next/image";
-import { useContext, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { CustomIconButton } from "..";
-import CustomLink from "../CustomLink";
-import logo from "@/assets/logo.png";
-import ToolTipWithButton from "../ToolTipWithButton";
-import { Tooltip } from "@mui/material";
-import OutlineButton from "../OutlineButton";
-import Icon from "../Icon";
-import { ScreenContext } from "../../contexts";
-import SearchBox from "./SearchBox";
-import { Menu, Skeleton } from "antd";
-import { useClickOutside } from "../../hooks";
-import categoryMenus from "../../json/json-category";
+import Image from 'next/image';
+import { useContext, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { CustomIconButton } from '..';
+import CustomLink from '../CustomLink';
+import logo from '@/assets/logo.png';
+import ToolTipWithButton from '../ToolTipWithButton';
+import { Tooltip } from '@mui/material';
+import OutlineButton from '../OutlineButton';
+import Icon from '../Icon';
+import { ScreenContext } from '../../contexts';
+import SearchBox from './SearchBox';
+import { Menu, Skeleton } from 'antd';
+import { useClickOutside } from '../../hooks';
+import categoryMenus from '../../json/json-category';
 
 export default function Header() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -24,7 +24,7 @@ export default function Header() {
   const { SubMenu } = Menu;
 
   return (
-    <div className="w-full sticky top-0 bg-white fixed-top ">
+    <div className="w-full sticky top-0 bg-white fixed-top backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg">
       <header
         className={`py-4 md:py-2 xl:py-0 flex-center gap-4 mx-auto cursor-pointer sticky top-0 lg:w-11/12 sm:w-full  bg-white z-auto`}
       >
@@ -38,10 +38,10 @@ export default function Header() {
             </CustomLink>
           )}
           <div className="relative">
-            {!mobileScreen && <OutlineButton isOpen={isOpen} label={"Category"} onClick={() => setIsOpen((pre) => !pre)} />}
+            {!mobileScreen && <OutlineButton isOpen={isOpen} label={'Category'} onClick={() => setIsOpen((pre) => !pre)} />}
 
             {/* category menu */}
-            <div className={`absolute mt-4 w-80 bg-white rounded-lg p-2 border-2 border-grey-900 ${isOpen ? "visible" : "invisible"}`}>
+            <div className={`absolute mt-4 w-80 bg-white rounded-lg p-2 border-2 border-grey-900 ${isOpen ? 'visible' : 'invisible'}`}>
               <ul ref={ref}>
                 {categoryMenus.map(({ name, id, slug }) => {
                   return (
@@ -86,7 +86,7 @@ export default function Header() {
             </>
 
             {/* Login */}
-            <OutlineButton label={"Login"} />
+            <OutlineButton label={'Login'} />
           </div>
         )}
       </header>

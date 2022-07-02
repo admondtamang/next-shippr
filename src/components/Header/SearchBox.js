@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
-import { Tooltip } from "@mui/material";
-import Icon from "../Icon";
-import ProductItem from "../ProductItem";
-import { useFetch, useClickOutside } from "../../hooks";
-import { SEARCH_PRODUCTS } from "../../utils/constants";
-import Router from "next/router";
+import React, { useRef, useState } from 'react';
+import { Tooltip } from '@mui/material';
+import Icon from '../Icon';
+import ProductItem from '../ProductItem';
+import { useFetch, useClickOutside } from '../../hooks';
+import { SEARCH_PRODUCTS } from '../../utils/constants';
+import Router from 'next/router';
 
 export default function SearchBox() {
   const [visible, setVisible] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const ref = useRef();
 
   useClickOutside(ref, () => {
@@ -37,16 +37,24 @@ export default function SearchBox() {
     setVisible(false);
 
     Router.push({
-      pathname: "/search",
+      pathname: '/search',
       query: { searchTerm },
     });
   }
 
   return (
-    <form onSubmit={onSubmit} className="search_bar relative rounded-full border-2 w-full flex items-center px-2">
-      <Icon name="search-alt-2" />
+    <form
+      onSubmit={onSubmit}
+      className="search_bar relative rounded-full w-full flex items-center px-2 font-semibold bg-slate-400/10 py-1 space-x-2 hover:bg-slate-400/20"
+    >
+      {/* <Icon name="search-alt-2" /> */}
 
-      <input className="outline-none border-0 py-2 ml-2 text-sm w-full" type="text" onChange={handleChange} placeholder="Search products" />
+      <input
+        className="outline-none border-0 py-2 ml-2 bg-transparent text-sm w-full"
+        type="text"
+        onChange={handleChange}
+        placeholder="Search in 'Shippr'"
+      />
 
       {/* Submit button */}
       <Tooltip title="Search" onClick={onSubmit}>
@@ -60,11 +68,11 @@ export default function SearchBox() {
         ref={ref}
         // border-bottom-2 font-bold hover:text-primary-50 hover:bg-primary-400
         className={`absolute w-full mt-10 rounded-full border-bottom-2 font-bold p-2 bg-white bottom-4 px-4 top-0 z-50 ${
-          visible ? "visible" : "invisible"
+          visible ? 'visible' : 'invisible'
         }`}
       >
         <div>
-          {isLoading && searchTerm != "" && <p>Loading</p>}
+          {isLoading && searchTerm != '' && <p>Loading</p>}
           {isResolved && response.map((item) => <ProductItem item={item} key={item.id} small_product />)}
         </div>
       </div>
